@@ -1,51 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
-import Svg, { Circle } from 'react-native-svg';
-import Animated, { useAnimatedProps, useSharedValue, withTiming } from 'react-native-reanimated';
+import { useDerivedValue, useSharedValue, withTiming, Easing } from 'react-native-reanimated';
+import { ReText } from 'react-native-redash';
 
-const { width, height } = Dimensions.get('window');
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+const { height } = Dimensions.get('window');
 
 const BACKGROUND_COLOR = '#444B6F'; //old: '#2E2E47'
-const BACKGROUND_COLOR_STROKE = '#303858';
-const STROKE_COLOR = '#A6E1FA';
-const STROKE_WIDTH = 30;
-const STROKE_WIDTH_INNER = 15;
+const BALANCE_DURATION = 1500;
 
-const CIRCLE_LENGTH = 850; //2PI*R
-const CIRCLE_RADIUS = CIRCLE_LENGTH / (2 * Math.PI);
+const BALANCE = 3312.73;
 
 const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {
   const progress = useSharedValue(0);
-
+  const balance = useSharedValue(BALANCE * 0.85);
   useEffect(() => {
-    progress.value = withTiming(0.5, { duration: 1500 });
+    progress.value = withTiming(0.5, { duration: BALANCE_DURATION });
   }, [progress]);
 
-  const animatedCircleProps = useAnimatedProps(() => ({
-    strokeDashoffset: CIRCLE_LENGTH * (1 - progress.value),
-  }));
+  useEffect(() => {
+    balance.value = withTiming(BALANCE, { duration: BALANCE_DURATION * 0.6, easing: Easing.out(Easing.exp) });
+  }, [balance]);
+
+  const animatedBalance = useDerivedValue(() => {
+    return `${balance.value.toFixed(2) + ' $'}`;
+  });
 
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <Text style={styles.balanceText}>3312.53$</Text>
-      <Svg>
-        <Circle cx={width / 2} cy={height / 2} r={CIRCLE_RADIUS} stroke={BACKGROUND_COLOR_STROKE} strokeWidth={STROKE_WIDTH} />
-        <AnimatedCircle
-          cx={width / 2}
-          cy={height / 2}
-          r={CIRCLE_RADIUS}
-          stroke={STROKE_COLOR}
-          strokeWidth={STROKE_WIDTH_INNER}
-          strokeDasharray={CIRCLE_LENGTH}
-          strokeOpacity={0.9}
-          animatedProps={animatedCircleProps}
-          strokeLinecap={'round'}
-        />
-      </Svg>
+      <ReText style={styles.balanceText} text={animatedBalance} />
     </View>
   );
 };
@@ -63,6 +48,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     textAlign: 'center',
+    paddingTop: height / 2,
   },
 });
 
