@@ -3,22 +3,21 @@ import React from 'react';
 import type { Routes } from './src/Routes';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import Ionicons from ;
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Dashboard } from './src/Dashboard';
+import { View } from 'react-native';
 
 export const Tab = createBottomTabNavigator<Routes>();
 
 export default function App(): React.ReactElement {
-  // const isOnboarding = useState(false);
   return (
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName={'Dashboard'}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
+            // TODO: Refactor
             let iconName = '';
-
             if (route.name === 'Dashboard') {
               iconName = focused ? 'fitness-outline' : 'fitness';
             } else if (route.name === 'Portfolio') {
@@ -30,10 +29,14 @@ export default function App(): React.ReactElement {
               iconName = focused ? 'planet-outline' : 'planet';
             }
 
-            return <Ionicons name={iconName} size={size} color={color} />;
+            return (
+              <View>
+                <Ionicons name={iconName} size={size} color={color} />
+              </View>
+            );
           },
           // TODO: change colors to match scheme
-          tabBarActiveTintColor: 'tomato',
+          tabBarActiveTintColor: '#FC5185',
           tabBarInactiveTintColor: 'gray',
           headerShown: false,
         })}>
