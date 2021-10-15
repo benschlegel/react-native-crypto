@@ -6,6 +6,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Dashboard } from './src/Dashboard';
 import { View } from 'react-native';
+import { Portfolio } from './src/Portfolio';
+import { Prices } from './src/Prices';
+import { Profile } from './src/Profile';
 
 export const Tab = createBottomTabNavigator<Routes>();
 
@@ -41,6 +44,9 @@ export default function App(): React.ReactElement {
           headerShown: false,
         })}>
         <Tab.Screen name="Dashboard" component={Dashboard} />
+        <Tab.Screen name="Portfolio" component={Portfolio} />
+        <Tab.Screen name="Prices" component={Prices} />
+        <Tab.Screen name="Profile" component={Profile} />
       </Tab.Navigator>
     </NavigationContainer>
   );
