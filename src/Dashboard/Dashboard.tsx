@@ -4,10 +4,9 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useDerivedValue, useSharedValue, withTiming, Easing } from 'react-native-reanimated';
 import { ReText } from 'react-native-redash';
-
+import { BACKGROUND_COLOR } from '../Constants/Constants';
 const { height } = Dimensions.get('window');
 
-const BACKGROUND_COLOR = '#444B6F'; //old: '#2E2E47'
 const BALANCE_DURATION = 1500;
 
 const BALANCE = 3312.73;

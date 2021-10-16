@@ -9,3 +9,5 @@ export const Theme = {
     notification: 'rgb(255, 69, 58)',
   },
 };
+
+export const BACKGROUND_COLOR = '#444B6F'; //old: '#2E2E47'
