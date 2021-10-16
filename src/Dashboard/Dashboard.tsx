@@ -15,14 +15,9 @@ const BALANCE = 3312.73;
 
 const BARS = 9;
 
-const defaultGraphicData = [{ y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 100 }]; // Data used to make the animate prop work
-// const defaultGraphicData = Array.from(new Array(BARS), (i) => {
-//   if (i === BARS - 1) {
-//     return { y: 100 };
-//   } else {
-//     return { y: 0 };
-//   }
-// });
+interface PieData {
+  y: number;
+}
 
 function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min);
@@ -34,7 +29,17 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   const progress = useSharedValue(0);
   const balance = useSharedValue(BALANCE * 0.85);
 
-  const [graphicData, setGraphicData] = useState(defaultGraphicData);
+  function calculateDefaultBar(): PieData[] {
+    return Array.from(new Array(BARS), (i) => {
+      if (i === BARS - 1) {
+        return { y: 100 };
+      } else {
+        return { y: 0 };
+      }
+    });
+  }
+
+  const [graphicData, setGraphicData] = useState<PieData[]>(calculateDefaultBar());
 
   const randomizeChart = useCallback(() => {
     const temp = Array.from(new Array(BARS), () => {
@@ -44,8 +49,9 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   }, []);
 
   useEffect(() => {
+    // TODO: figure out way to initialize graph and update it
     randomizeChart();
-  }, [randomizeChart]);
+  }, [setGraphicData, randomizeChart]);
 
   useEffect(() => {
     progress.value = withTiming(0.5, { duration: BALANCE_DURATION });
@@ -70,8 +76,8 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
         theme={VictoryTheme.material}
         padAngle={2}
         animate={{
-          easing: 'exp',
-          duration: 1500,
+          easing: 'expOut',
+          duration: 1100,
         }}
       />
       <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
