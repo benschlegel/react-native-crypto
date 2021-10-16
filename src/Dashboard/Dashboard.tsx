@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useDerivedValue, useSharedValue, withTiming, Easing } from 'react-native-reanimated';
@@ -12,15 +12,18 @@ const BALANCE_DURATION = 1500;
 
 const BALANCE = 3312.73;
 
-const data = [
-  { x: 'Cats', y: 35 },
-  { x: 'Dogs', y: 40 },
-  { x: 'Birds', y: 55 },
-];
+const wantedGraphicData = [{ y: 10 }, { y: 50 }, { y: 40 }]; // Data that we want to display
+const defaultGraphicData = [{ y: 0 }, { y: 0 }, { y: 100 }]; // Data used to make the animate prop work
 
 const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {
   const progress = useSharedValue(0);
   const balance = useSharedValue(BALANCE * 0.85);
+
+  const [graphicData, setGraphicData] = useState(defaultGraphicData);
+
+  useEffect(() => {
+    setGraphicData(wantedGraphicData); // Setting the data that we want to display
+  }, []);
   useEffect(() => {
     progress.value = withTiming(0.5, { duration: BALANCE_DURATION });
   }, [progress]);
@@ -38,7 +41,15 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
       <StatusBar style="light" />
       <ReText style={styles.balanceText} text={animatedBalance} />
       {/* cornerRadius={30} */}
-      <VictoryPie data={data} innerRadius={100} theme={VictoryTheme.material} padAngle={2} />
+      <VictoryPie
+        data={graphicData}
+        innerRadius={100}
+        theme={VictoryTheme.material}
+        padAngle={2}
+        animate={{
+          easing: 'exp',
+        }}
+      />
     </View>
   );
 };
