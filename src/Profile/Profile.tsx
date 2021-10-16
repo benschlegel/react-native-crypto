@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
+import { BACKGROUND_COLOR } from '../Constants/Constants';
 
 const Profile = ({ navigation }: StackNavigationProps<Routes, 'Profile'>): React.ReactElement => {
   return (
     <View style={styles.container}>
-      <Text>Profile</Text>
+      <Text style={styles.text}>Profile</Text>
     </View>
   );
 };
@@ -13,9 +14,13 @@ const Profile = ({ navigation }: StackNavigationProps<Routes, 'Profile'>): React
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: BACKGROUND_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    color: '#FFF',
+    fontSize: 30,
   },
 });
 
