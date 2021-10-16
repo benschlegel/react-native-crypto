@@ -13,8 +13,16 @@ const BALANCE_DURATION = 1500;
 
 const BALANCE = 3312.73;
 
-const wantedGraphicData = [{ y: 10 }, { y: 50 }, { y: 40 }, { y: 40 }, { y: 40 }]; // Data that we want to display
-const defaultGraphicData = [{ y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 100 }]; // Data used to make the animate prop work
+const BARS = 9;
+
+const defaultGraphicData = [{ y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 0 }, { y: 100 }]; // Data used to make the animate prop work
+// const defaultGraphicData = Array.from(new Array(BARS), (i) => {
+//   if (i === BARS - 1) {
+//     return { y: 100 };
+//   } else {
+//     return { y: 0 };
+//   }
+// });
 
 function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min);
@@ -28,16 +36,16 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
 
   const [graphicData, setGraphicData] = useState(defaultGraphicData);
 
-  useEffect(() => {
-    setGraphicData(wantedGraphicData); // Setting the data that we want to display
-  }, []);
-
   const randomizeChart = useCallback(() => {
-    const temp = Array.from(new Array(9), (x) => {
+    const temp = Array.from(new Array(BARS), () => {
       return { y: getRandomInt(10, 200) };
     });
     setGraphicData(temp);
   }, []);
+
+  useEffect(() => {
+    randomizeChart();
+  }, [randomizeChart]);
 
   useEffect(() => {
     progress.value = withTiming(0.5, { duration: BALANCE_DURATION });
