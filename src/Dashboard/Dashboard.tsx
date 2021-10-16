@@ -5,11 +5,18 @@ import { Routes, StackNavigationProps } from '../Routes';
 import { useDerivedValue, useSharedValue, withTiming, Easing } from 'react-native-reanimated';
 import { ReText } from 'react-native-redash';
 import { BACKGROUND_COLOR } from '../Constants/Constants';
+import { VictoryBar, VictoryChart, VictoryPie, VictoryTheme } from 'victory-native';
 const { height } = Dimensions.get('window');
 
 const BALANCE_DURATION = 1500;
 
 const BALANCE = 3312.73;
+
+const data = [
+  { x: 'Cats', y: 35 },
+  { x: 'Dogs', y: 40 },
+  { x: 'Birds', y: 55 },
+];
 
 const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {
   const progress = useSharedValue(0);
@@ -30,6 +37,8 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
     <View style={styles.container}>
       <StatusBar style="light" />
       <ReText style={styles.balanceText} text={animatedBalance} />
+      {/* cornerRadius={30} */}
+      <VictoryPie data={data} innerRadius={100} theme={VictoryTheme.material} padAngle={2} />
     </View>
   );
 };
@@ -47,7 +56,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    paddingTop: height / 2,
   },
 });
 
