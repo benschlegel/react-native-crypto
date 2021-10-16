@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, Dimensions, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useDerivedValue, useSharedValue, withTiming, Easing } from 'react-native-reanimated';
 import { ReText } from 'react-native-redash';
@@ -26,20 +26,9 @@ function getRandomInt(min: number, max: number): number {
 }
 
 const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {
-  const progress = useSharedValue(0);
   const balance = useSharedValue(BALANCE * 0.85);
-
-  function calculateDefaultBar(): PieData[] {
-    return Array.from(new Array(BARS), (i) => {
-      if (i === BARS - 1) {
-        return { y: 100 };
-      } else {
-        return { y: 0 };
-      }
-    });
-  }
-
-  const [graphicData, setGraphicData] = useState<PieData[]>(calculateDefaultBar());
+  const [graphicData, setGraphicData] = useState<PieData[]>();
+  const [angle, setAngle] = useState(0);
 
   const randomizeChart = useCallback(() => {
     const temp = Array.from(new Array(BARS), () => {
@@ -49,13 +38,13 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   }, []);
 
   useEffect(() => {
-    // TODO: figure out way to initialize graph and update it
+    // use timeout to animate initial data update
+    setAngle(0);
+    setTimeout(() => {
+      setAngle(360);
+    }, 50);
     randomizeChart();
-  }, [setGraphicData, randomizeChart]);
-
-  useEffect(() => {
-    progress.value = withTiming(0.5, { duration: BALANCE_DURATION });
-  }, [progress]);
+  }, [randomizeChart]);
 
   useEffect(() => {
     balance.value = withTiming(BALANCE, { duration: BALANCE_DURATION * 0.6, easing: Easing.out(Easing.exp) });
@@ -75,6 +64,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
         innerRadius={100}
         theme={VictoryTheme.material}
         padAngle={2}
+        endAngle={angle}
         animate={{
           easing: 'expOut',
           duration: 1100,
