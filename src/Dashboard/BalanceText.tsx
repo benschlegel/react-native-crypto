@@ -18,7 +18,7 @@ const BalanceText = ({ balance, isRefreshing }: BalanceTextProps): React.ReactEl
 
   const animatedBalance = useDerivedValue(() => {
     return `${balance.value.toFixed(2) + ' $'}`;
-  });
+  }, [balance.value]);
 
   return (
     <Animated.View style={textStyle}>

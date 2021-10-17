@@ -43,9 +43,10 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
     setRefreshing(true);
     wait(1500).then(() => {
       setRefreshing(false);
+      balance.value = withTiming(balance.value + 10, { duration: BALANCE_DURATION * 0.35, easing: Easing.out(Easing.exp) });
       randomizeChart();
     });
-  }, [randomizeChart]);
+  }, [balance, randomizeChart]);
 
   useEffect(() => {
     // use timeout to animate initial data update
