@@ -7,6 +7,7 @@ import { ReText } from 'react-native-redash';
 import { BACKGROUND_COLOR, PieData } from '../Constants/Constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import BalancePie from './BalancePie';
+import BalanceText from './BalanceText';
 
 const BALANCE_DURATION = 1500;
 
@@ -45,14 +46,10 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
     balance.value = withTiming(BALANCE, { duration: BALANCE_DURATION * 0.6, easing: Easing.out(Easing.exp) });
   }, [balance]);
 
-  const animatedBalance = useDerivedValue(() => {
-    return `${balance.value.toFixed(2) + ' $'}`;
-  });
-
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <ReText style={styles.balanceText} text={animatedBalance} />
+      <BalanceText balance={balance} />
       <BalancePie data={graphicData} angle={angle} />
       <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
         <Text style={styles.randomizeText}>Randomize</Text>
@@ -67,13 +64,6 @@ const styles = StyleSheet.create({
     backgroundColor: BACKGROUND_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  balanceText: {
-    color: '#FFF',
-    fontSize: 28,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
   },
   randomizeContainer: {
     marginTop: 20,
