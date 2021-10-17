@@ -9,6 +9,7 @@ import { View } from 'react-native';
 import { Portfolio } from './src/Portfolio';
 import { Prices } from './src/Prices';
 import { Profile } from './src/Profile';
+import { TINT_COLOR } from './src/Constants/Constants';
 
 export const Tab = createBottomTabNavigator<Routes>();
 
@@ -39,7 +40,7 @@ export default function App(): React.ReactElement {
             );
           },
           // TODO: change colors to match scheme
-          tabBarActiveTintColor: '#FC5185',
+          tabBarActiveTintColor: TINT_COLOR,
           tabBarInactiveTintColor: 'gray',
           headerShown: false,
         })}>

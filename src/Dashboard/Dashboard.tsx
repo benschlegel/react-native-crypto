@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, SafeAreaView, RefreshControl } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useSharedValue, withTiming, Easing } from 'react-native-reanimated';
-import { BACKGROUND_COLOR, PieData, TEXT_COLOR } from '../Constants/Constants';
+import { BACKGROUND_COLOR, PieData, TEXT_COLOR, TINT_COLOR } from '../Constants/Constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import BalancePie from './BalancePie';
 import BalanceText from './BalanceText';
@@ -65,7 +65,15 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
       <StatusBar style="dark" />
       <ScrollView
         contentContainerStyle={styles.scrollView}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            progressViewOffset={45}
+            tintColor={TINT_COLOR}
+            colors={[TINT_COLOR]}
+          />
+        }>
         <BalanceText balance={balance} isRefreshing={refreshing} />
         <BalancePie data={graphicData} angle={angle} />
         <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
