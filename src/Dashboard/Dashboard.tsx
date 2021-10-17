@@ -2,9 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
-import { useDerivedValue, useSharedValue, withTiming, Easing } from 'react-native-reanimated';
-import { ReText } from 'react-native-redash';
-import { BACKGROUND_COLOR, PieData } from '../Constants/Constants';
+import { useSharedValue, withTiming, Easing } from 'react-native-reanimated';
+import { BACKGROUND_COLOR, PieData, TEXT_COLOR } from '../Constants/Constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import BalancePie from './BalancePie';
 import BalanceText from './BalanceText';
@@ -13,7 +12,7 @@ const BALANCE_DURATION = 1500;
 
 const BALANCE = 3312.73;
 
-const BARS = 9;
+const BARS = 5;
 
 function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min);
@@ -24,6 +23,7 @@ function getRandomInt(min: number, max: number): number {
 const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {
   const balance = useSharedValue(BALANCE * 0.85);
   const [graphicData, setGraphicData] = useState<PieData[]>();
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [angle, setAngle] = useState(0);
 
   const randomizeChart = useCallback(() => {
@@ -49,7 +49,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <BalanceText balance={balance} />
+      <BalanceText balance={balance} isRefreshing={isRefreshing} />
       <BalancePie data={graphicData} angle={angle} />
       <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
         <Text style={styles.randomizeText}>Randomize</Text>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   randomizeText: {
-    color: 'white',
+    color: TEXT_COLOR,
   },
 });
 

@@ -1,22 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { Easing, useDerivedValue, withTiming } from 'react-native-reanimated';
+import Animated, { Easing, useAnimatedStyle, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 import { ReText } from 'react-native-redash';
+import { TEXT_COLOR } from '../Constants/Constants';
 
 interface BalanceTextProps {
   balance: Animated.SharedValue<number>;
+  isRefreshing: boolean;
 }
 
-const BalanceText = ({ balance }: BalanceTextProps): React.ReactElement => {
+const BalanceText = ({ balance, isRefreshing }: BalanceTextProps): React.ReactElement => {
   const animatedBalance = useDerivedValue(() => {
     return `${balance.value.toFixed(2) + ' $'}`;
   });
-  return <ReText style={styles.balanceText} text={animatedBalance} />;
+
+  return (
+    <Animated.View>
+      <ReText style={styles.balanceText} text={animatedBalance} />
+    </Animated.View>
+  );
 };
 
 const styles = StyleSheet.create({
   balanceText: {
-    color: '#FFF',
+    color: TEXT_COLOR,
     fontSize: 28,
     alignSelf: 'center',
     justifyContent: 'center',

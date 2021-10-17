@@ -10,7 +10,8 @@ export const Theme = {
   },
 };
 
-export const BACKGROUND_COLOR = '#444B6F'; //old: '#2E2E47'
+export const BACKGROUND_COLOR = '#F6FAFF'; //old: '#2E2E47'
+export const TEXT_COLOR = '#181C3A';
 
 export interface PieData {
   y: number;
