@@ -56,4 +56,4 @@ const BalancePie = ({ data, angle, isRefreshing }: BalancePieProps): React.React
   );
 };
 
-export default BalancePie;
+export default React.memo(BalancePie);

@@ -5,6 +5,7 @@ interface CoinPreviewProps {
   course?: number;
   changePercentage?: number;
   isPositive?: boolean;
+  image: string;
 }
 
 const CoinPreview = ({}: CoinPreviewProps): React.ReactElement => {

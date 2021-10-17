@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, SafeAreaView, RefreshControl } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useSharedValue, withTiming, Easing } from 'react-native-reanimated';
@@ -24,6 +24,15 @@ function getRandomInt(min: number, max: number): number {
 const wait = (timeout: number): Promise<number> => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
+
+const IMAGE_PATHS = [
+  'bitcoin-btc-logo.png',
+  'cardano-ada-logo.png',
+  'ethereum-eth-logo.png',
+  'polygon-matic-logo.png',
+  'solana-sol-logo.png',
+  'vechain-vet-logo.png',
+];
 
 const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {
   const insets = useSafeAreaInsets();
@@ -93,7 +102,9 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
         </TouchableOpacity>
 
         {/* Favs section */}
-        <CoinPreview />
+        {IMAGE_PATHS.map((image, index) => {
+          return <CoinPreview image={image} key={index} />;
+        })}
       </ScrollView>
     </SafeAreaView>
   );
@@ -107,7 +118,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   randomizeContainer: {
-    marginTop: 20,
+    marginTop: 15,
     marginBottom: 5,
     width: 200,
     height: 45,
