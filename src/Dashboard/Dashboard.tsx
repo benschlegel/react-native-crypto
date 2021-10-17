@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, SafeAreaView, RefreshControl } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useSharedValue, withTiming, Easing } from 'react-native-reanimated';
 import { BACKGROUND_COLOR, PieData, TEXT_COLOR } from '../Constants/Constants';
@@ -20,6 +20,10 @@ function getRandomInt(min: number, max: number): number {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+const wait = (timeout: number) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
 
 const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {
   const insets = useSafeAreaInsets();
@@ -48,10 +52,18 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
     balance.value = withTiming(BALANCE, { duration: BALANCE_DURATION * 0.6, easing: Easing.out(Easing.exp) });
   }, [balance]);
 
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   return (
     <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
       <StatusBar style="dark" />
-      <ScrollView style={styles.scrollView}>
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
         <BalanceText balance={balance} isRefreshing={isRefreshing} />
         <BalancePie data={graphicData} angle={angle} />
         <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
@@ -71,6 +83,7 @@ const styles = StyleSheet.create({
   },
   randomizeContainer: {
     marginTop: 20,
+    marginBottom: 5,
     width: 200,
     height: 45,
     borderRadius: 26,
@@ -81,7 +94,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   scrollView: {
-    marginTop: 30,
+    paddingTop: 30,
   },
   randomizeText: {
     color: TEXT_COLOR,
