@@ -11,3 +11,7 @@ export const Theme = {
 };
 
 export const BACKGROUND_COLOR = '#444B6F'; //old: '#2E2E47'
+
+export interface PieData {
+  y: number;
+}

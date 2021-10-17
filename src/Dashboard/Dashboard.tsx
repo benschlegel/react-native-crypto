@@ -4,20 +4,15 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useDerivedValue, useSharedValue, withTiming, Easing } from 'react-native-reanimated';
 import { ReText } from 'react-native-redash';
-import { BACKGROUND_COLOR } from '../Constants/Constants';
-import { VictoryPie, VictoryTheme } from 'victory-native';
+import { BACKGROUND_COLOR, PieData } from '../Constants/Constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-// const { width, height } = Dimensions.get('window');
+import BalancePie from './BalancePie';
 
 const BALANCE_DURATION = 1500;
 
 const BALANCE = 3312.73;
 
 const BARS = 9;
-
-interface PieData {
-  y: number;
-}
 
 function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min);
@@ -58,18 +53,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
     <View style={styles.container}>
       <StatusBar style="light" />
       <ReText style={styles.balanceText} text={animatedBalance} />
-      {/* cornerRadius={30} */}
-      <VictoryPie
-        data={graphicData}
-        innerRadius={100}
-        theme={VictoryTheme.material}
-        padAngle={2}
-        endAngle={angle}
-        animate={{
-          easing: 'expOut',
-          duration: 1100,
-        }}
-      />
+      <BalancePie data={graphicData} angle={angle} />
       <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
         <Text style={styles.randomizeText}>Randomize</Text>
       </TouchableOpacity>
