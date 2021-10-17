@@ -8,11 +8,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import BalancePie from './BalancePie';
 import BalanceText from './BalanceText';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import CoinPreview from '../Components/CoinPreview';
 
 const BALANCE_DURATION = 1500;
-
 const BALANCE = 3312.73;
-
 const BARS = 5;
 
 const MARGIN_SIDES = 30;
@@ -22,7 +21,6 @@ function getRandomInt(min: number, max: number): number {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 const wait = (timeout: number): Promise<number> => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
@@ -80,7 +78,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
           />
         }>
         <View style={styles.textNameContainer}>
-          <Text style={styles.textWelcome}>Hi,</Text>
+          <Text style={styles.textWelcome}>Welcome,</Text>
           <Text style={styles.textName}>Ben</Text>
         </View>
         <View style={styles.balanceContainer}>
@@ -93,7 +91,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
         </TouchableOpacity>
 
         {/* Favs section */}
-        {/* Coins section */}
+        <CoinPreview />
       </ScrollView>
     </SafeAreaView>
   );
