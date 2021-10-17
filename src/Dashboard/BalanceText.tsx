@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     textAlign: 'center',
+    fontFamily: 'SF-Pro-Text-Bold',
   },
 });
 

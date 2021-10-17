@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import type { Routes } from './src/Routes';
@@ -10,10 +11,21 @@ import { Portfolio } from './src/Portfolio';
 import { Prices } from './src/Prices';
 import { Profile } from './src/Profile';
 import { TINT_COLOR } from './src/Constants/Constants';
+import { useFonts } from 'expo-font';
 
 export const Tab = createBottomTabNavigator<Routes>();
 
 export default function App(): React.ReactElement {
+  const [loaded] = useFonts({
+    'SF-Pro-Text-Bold': require('./assets/fonts/SF-Pro-Text-Regular.otf'),
+    'SF-Pro-Text-Regular': require('./assets/fonts/SF-Pro-Text-Bold.otf'),
+    'SF-Pro-Text-Semibold': require('./assets/fonts/SF-Pro-Text-Semibold.otf'),
+  });
+
+  if (!loaded) {
+    return <View />;
+  }
+
   return (
     <NavigationContainer>
       <Tab.Navigator

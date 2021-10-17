@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
   },
   randomizeText: {
     color: TEXT_COLOR,
+    fontFamily: 'SF-Pro-Text-Semibold',
   },
 });
 
