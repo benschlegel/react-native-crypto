@@ -20,7 +20,14 @@ const CoinPreview = ({}: CoinPreviewProps): React.ReactElement => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFF',
-    elevation: 3,
+    //Shadows for ios
+    shadowColor: 'rgba(0,0,0, .4)',
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    //Shadows for android
+    elevation: 1,
+
     borderRadius: 20,
     width: '90%',
     justifyContent: 'center',
@@ -29,6 +36,7 @@ const styles = StyleSheet.create({
     height: 70,
     flexDirection: 'row',
     marginBottom: 10,
+    marginTop: 5,
   },
 });
 

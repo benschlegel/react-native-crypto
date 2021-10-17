@@ -30,6 +30,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   const balance = useSharedValue(BALANCE * 0.85);
   const [graphicData, setGraphicData] = useState<PieData[]>();
   const [angle, setAngle] = useState(0);
+  const [dailyChange, setDailyChange] = useState(1.4);
   const [refreshing, setRefreshing] = React.useState(false);
 
   const randomizeChart = useCallback(() => {
@@ -44,8 +45,11 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
     setRefreshing(true);
     wait(1500).then(() => {
       setRefreshing(false);
+      // TODO: shared value necessary?
       balance.value = withTiming(balance.value + 10, { duration: BALANCE_DURATION * 0.35, easing: Easing.out(Easing.exp) });
       randomizeChart();
+      //TODO: figure out weird refresh
+      setDailyChange(Math.random() * 5 - 3);
     });
   }, [balance, randomizeChart]);
 
@@ -84,7 +88,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
         <View style={styles.balanceContainer}>
           <Text style={styles.balanceText}>Balance</Text>
         </View>
-        <BalanceText balance={balance} isRefreshing={refreshing} />
+        <BalanceText balance={balance} isRefreshing={refreshing} dailyChange={dailyChange} />
         <BalancePie data={graphicData} isRefreshing={refreshing} angle={angle} />
         <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
           <Text style={styles.randomizeText}>Randomize</Text>
