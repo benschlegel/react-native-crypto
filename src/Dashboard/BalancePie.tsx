@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useEffect } from 'react';
 import { VictoryPie, VictoryTheme } from 'victory-native';
 import { PieData } from '../Constants/Constants';
 

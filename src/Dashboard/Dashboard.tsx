@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useSharedValue, withTiming, Easing } from 'react-native-reanimated';
 import { BACKGROUND_COLOR, PieData, TEXT_COLOR } from '../Constants/Constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import BalancePie from './BalancePie';
 import BalanceText from './BalanceText';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const BALANCE_DURATION = 1500;
 
@@ -21,6 +22,7 @@ function getRandomInt(min: number, max: number): number {
 }
 
 const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {
+  const insets = useSafeAreaInsets();
   const balance = useSharedValue(BALANCE * 0.85);
   const [graphicData, setGraphicData] = useState<PieData[]>();
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -47,14 +49,16 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   }, [balance]);
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" />
-      <BalanceText balance={balance} isRefreshing={isRefreshing} />
-      <BalancePie data={graphicData} angle={angle} />
-      <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
-        <Text style={styles.randomizeText}>Randomize</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
+      <StatusBar style="dark" />
+      <ScrollView style={styles.scrollView}>
+        <BalanceText balance={balance} isRefreshing={isRefreshing} />
+        <BalancePie data={graphicData} angle={angle} />
+        <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
+          <Text style={styles.randomizeText}>Randomize</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -74,6 +78,10 @@ const styles = StyleSheet.create({
     opacity: 0.8,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
+  },
+  scrollView: {
+    marginTop: 30,
   },
   randomizeText: {
     color: TEXT_COLOR,
