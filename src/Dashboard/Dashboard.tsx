@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, SafeAreaView, RefreshControl } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useSharedValue, withTiming, Easing } from 'react-native-reanimated';
-import { BACKGROUND_COLOR, PieData, TEXT_COLOR, TINT_COLOR } from '../Constants/Constants';
+import { BACKGROUND_COLOR, PieData, TEXT_COLOR, TEXT_COLOR_GRAY, TINT_COLOR } from '../Constants/Constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import BalancePie from './BalancePie';
 import BalanceText from './BalanceText';
@@ -14,6 +14,8 @@ const BALANCE_DURATION = 1500;
 const BALANCE = 3312.73;
 
 const BARS = 5;
+
+const MARGIN_SIDES = 30;
 
 function getRandomInt(min: number, max: number): number {
   min = Math.ceil(min);
@@ -65,6 +67,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   return (
     <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
       <StatusBar style="dark" />
+
       <ScrollView
         contentContainerStyle={styles.scrollView}
         refreshControl={
@@ -76,6 +79,13 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
             colors={[TINT_COLOR]}
           />
         }>
+        <View style={styles.textNameContainer}>
+          <Text style={styles.textWelcome}>Hi,</Text>
+          <Text style={styles.textName}>Ben</Text>
+        </View>
+        <View style={styles.balanceContainer}>
+          <Text style={styles.balanceText}>Balance</Text>
+        </View>
         <BalanceText balance={balance} isRefreshing={refreshing} />
         <BalancePie data={graphicData} isRefreshing={refreshing} angle={angle} />
         <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
@@ -114,6 +124,37 @@ const styles = StyleSheet.create({
   randomizeText: {
     color: TEXT_COLOR,
     fontFamily: 'SF-Pro-Text-Semibold',
+  },
+  textNameContainer: {
+    paddingTop: 0,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignSelf: 'flex-start',
+    marginLeft: MARGIN_SIDES,
+  },
+  textWelcome: {
+    textAlign: 'left',
+    fontSize: 20,
+    color: 'gray',
+    fontFamily: 'SF-Pro-Text-Regular',
+  },
+  textName: {
+    textAlign: 'left',
+    fontSize: 26,
+    fontFamily: 'SF-Pro-Text-Regular',
+  },
+  balanceText: {
+    textAlign: 'center',
+    fontSize: 26,
+    fontFamily: 'SF-Pro-Text-Semibold',
+    color: TEXT_COLOR,
+  },
+  balanceContainer: {
+    opacity: 0.75,
+    marginTop: 20,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
   },
 });
 

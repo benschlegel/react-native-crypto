@@ -30,7 +30,7 @@ const BalanceText = ({ balance, isRefreshing }: BalanceTextProps): React.ReactEl
 const styles = StyleSheet.create({
   balanceText: {
     color: TEXT_COLOR,
-    fontSize: 28,
+    fontSize: 38,
     alignSelf: 'center',
     justifyContent: 'center',
     textAlign: 'center',
