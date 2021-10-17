@@ -33,9 +33,10 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   const [refreshing, setRefreshing] = React.useState(false);
 
   const randomizeChart = useCallback(() => {
-    const temp = Array.from(new Array(BARS), () => {
+    const temp: PieData[] = Array.from(new Array(BARS), () => {
       return { y: getRandomInt(10, 200) };
     });
+
     setGraphicData(temp);
   }, []);
 

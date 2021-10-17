@@ -15,4 +15,5 @@ export const TEXT_COLOR = '#181C3A';
 export const TINT_COLOR = '#FC5185';
 export interface PieData {
   y: number;
+  label?: string;
 }
