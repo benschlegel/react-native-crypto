@@ -12,7 +12,7 @@ interface BalanceTextProps {
 const BalanceText = ({ balance, isRefreshing }: BalanceTextProps): React.ReactElement => {
   const textStyle = useAnimatedStyle(() => {
     return {
-      opacity: isRefreshing ? withTiming(0.4) : withTiming(1),
+      opacity: isRefreshing ? withTiming(0.5) : withTiming(1),
     };
   }, [isRefreshing]);
 

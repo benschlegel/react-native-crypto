@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { VictoryPie, VictoryTheme } from 'victory-native';
 import { PieData } from '../Constants/Constants';
 import Svg, { Circle, Text } from 'react-native-svg';
-import { Dimensions } from 'react-native';
+import { Animated, Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -14,6 +14,7 @@ const STROKE_WIDTH = 45;
 interface BalancePieProps {
   data: PieData[] | undefined;
   angle: number;
+  isRefreshing?: boolean;
 }
 
 function compareData(a: PieData, b: PieData): number {
@@ -22,7 +23,7 @@ function compareData(a: PieData, b: PieData): number {
   return 0;
 }
 
-const BalancePie = ({ data, angle }: BalancePieProps): React.ReactElement => {
+const BalancePie = ({ data, angle, isRefreshing }: BalancePieProps): React.ReactElement => {
   // const [text, setText] = useState('text');
   useEffect(() => {
     data?.sort(compareData);

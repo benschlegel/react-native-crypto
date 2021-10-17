@@ -77,13 +77,13 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
           />
         }>
         <BalanceText balance={balance} isRefreshing={refreshing} />
-        <BalancePie data={graphicData} angle={angle} />
+        <BalancePie data={graphicData} isRefreshing={refreshing} angle={angle} />
         <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
           <Text style={styles.randomizeText}>Randomize</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.demo}>
-          <Text>test</Text>
-        </TouchableOpacity>
+
+        {/* Favs section */}
+        {/* Coins section */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -113,13 +113,6 @@ const styles = StyleSheet.create({
   },
   randomizeText: {
     color: TEXT_COLOR,
-  },
-  demo: {
-    position: 'absolute',
-    top: 80,
-    width: 250,
-    height: 60,
-    backgroundColor: 'green',
   },
 });
 
