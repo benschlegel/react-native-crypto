@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
-import { BACKGROUND_COLOR } from '../Constants/Constants';
+import { BACKGROUND_COLOR, TEXT_COLOR } from '../Constants/Constants';
 
 const Profile = ({ navigation }: StackNavigationProps<Routes, 'Profile'>): React.ReactElement => {
   return (
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    color: '#FFF',
+    color: TEXT_COLOR,
     fontSize: 30,
   },
 });

@@ -21,7 +21,7 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const wait = (timeout: number) => {
+const wait = (timeout: number): Promise<number> => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
@@ -29,8 +29,13 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   const insets = useSafeAreaInsets();
   const balance = useSharedValue(BALANCE * 0.85);
   const [graphicData, setGraphicData] = useState<PieData[]>();
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const [angle, setAngle] = useState(0);
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
 
   const randomizeChart = useCallback(() => {
     const temp = Array.from(new Array(BARS), () => {
@@ -52,19 +57,13 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
     balance.value = withTiming(BALANCE, { duration: BALANCE_DURATION * 0.6, easing: Easing.out(Easing.exp) });
   }, [balance]);
 
-  const [refreshing, setRefreshing] = React.useState(false);
-
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
   return (
     <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
       <StatusBar style="dark" />
       <ScrollView
         contentContainerStyle={styles.scrollView}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-        <BalanceText balance={balance} isRefreshing={isRefreshing} />
+        <BalanceText balance={balance} isRefreshing={refreshing} />
         <BalancePie data={graphicData} angle={angle} />
         <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
           <Text style={styles.randomizeText}>Randomize</Text>
