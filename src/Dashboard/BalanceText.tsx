@@ -13,6 +13,7 @@ const BalanceText = ({ balance, isRefreshing }: BalanceTextProps): React.ReactEl
   const textStyle = useAnimatedStyle(() => {
     return {
       opacity: isRefreshing ? withTiming(0.5) : withTiming(1),
+      width: '100%',
     };
   }, [isRefreshing]);
 
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     textAlign: 'center',
+    width: '100%',
     fontFamily: 'SF-Pro-Text-Bold',
   },
 });
