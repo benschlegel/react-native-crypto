@@ -32,17 +32,20 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   const [angle, setAngle] = useState(0);
   const [refreshing, setRefreshing] = React.useState(false);
 
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
-
   const randomizeChart = useCallback(() => {
     const temp = Array.from(new Array(BARS), () => {
       return { y: getRandomInt(10, 200) };
     });
     setGraphicData(temp);
   }, []);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(1500).then(() => {
+      setRefreshing(false);
+      randomizeChart();
+    });
+  }, [randomizeChart]);
 
   useEffect(() => {
     // use timeout to animate initial data update

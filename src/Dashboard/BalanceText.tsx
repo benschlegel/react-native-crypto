@@ -10,12 +10,18 @@ interface BalanceTextProps {
 }
 
 const BalanceText = ({ balance, isRefreshing }: BalanceTextProps): React.ReactElement => {
+  const textStyle = useAnimatedStyle(() => {
+    return {
+      opacity: isRefreshing ? withTiming(0.5) : withTiming(1),
+    };
+  }, [isRefreshing]);
+
   const animatedBalance = useDerivedValue(() => {
     return `${balance.value.toFixed(2) + ' $'}`;
   });
 
   return (
-    <Animated.View>
+    <Animated.View style={textStyle}>
       <ReText style={styles.balanceText} text={animatedBalance} />
     </Animated.View>
   );
