@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { VictoryPie, VictoryTheme } from 'victory-native';
 import { PieData } from '../Constants/Constants';
-import Svg, { Circle } from 'react-native-svg';
+import Svg, { Circle, Text } from 'react-native-svg';
 import { Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -23,6 +23,7 @@ function compareData(a: PieData, b: PieData): number {
 }
 
 const BalancePie = ({ data, angle }: BalancePieProps): React.ReactElement => {
+  // const [text, setText] = useState('text');
   useEffect(() => {
     data?.sort(compareData);
   }, [data]);
@@ -30,6 +31,9 @@ const BalancePie = ({ data, angle }: BalancePieProps): React.ReactElement => {
   return (
     <Svg width={width * 0.95} height={345}>
       <Circle cx={width / 2} cy={height / 4 - 10} r={CIRCLE_RADIUS} stroke={BACKGROUND_COLOR_STROKE} strokeWidth={STROKE_WIDTH} />
+      {/* <Text fill="red" stroke="none" fontSize="20" fontWeight="bold" x="180" y="180" textAnchor="middle">
+        {text}
+      </Text> */}
       <VictoryPie
         standalone={false}
         data={data}
@@ -37,6 +41,11 @@ const BalancePie = ({ data, angle }: BalancePieProps): React.ReactElement => {
         theme={VictoryTheme.material}
         padAngle={2}
         endAngle={angle}
+        style={{
+          data: {
+            borderRadius: 50,
+          },
+        }}
         animate={{
           easing: 'expOut',
           duration: 1100,
