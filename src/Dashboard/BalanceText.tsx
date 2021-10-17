@@ -22,11 +22,6 @@ const BalanceText = ({ balance, isRefreshing, dailyChange }: BalanceTextProps): 
     return `${balance.value.toFixed(2) + ' $'}`;
   }, [balance.value]);
 
-  const dailyChangeText = useDerivedValue(() => {
-    const formatedChange = `${dailyChange.toFixed(2)}% (1D)`;
-    return formatedChange;
-  }, [dailyChange]);
-
   const dailyChangeColor = useAnimatedStyle(() => {
     return {
       color: dailyChange >= 0 ? 'green' : 'red',
@@ -36,7 +31,7 @@ const BalanceText = ({ balance, isRefreshing, dailyChange }: BalanceTextProps): 
   return (
     <Animated.View style={textStyle}>
       <ReText style={styles.balanceText} text={animatedBalance} />
-      <Animated.Text style={[styles.dailyChange, dailyChangeColor]}>{dailyChangeText.value}</Animated.Text>
+      <Animated.Text style={[styles.dailyChange, dailyChangeColor]}>{`${dailyChange.toFixed(2)}% (1D)`}</Animated.Text>
     </Animated.View>
   );
 };

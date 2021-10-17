@@ -43,13 +43,14 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    wait(1500).then(() => {
+    wait(1200).then(() => {
       setRefreshing(false);
       // TODO: shared value necessary?
       balance.value = withTiming(balance.value + 10, { duration: BALANCE_DURATION * 0.35, easing: Easing.out(Easing.exp) });
       randomizeChart();
       //TODO: figure out weird refresh
-      setDailyChange(Math.random() * 5 - 3);
+      const temp = Math.random() * 5 - 3;
+      setDailyChange(temp);
     });
   }, [balance, randomizeChart]);
 
