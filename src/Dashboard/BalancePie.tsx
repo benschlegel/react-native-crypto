@@ -30,7 +30,7 @@ const BalancePie = ({ data, angle, isRefreshing }: BalancePieProps): React.React
   }, [data]);
 
   return (
-    <Svg width={width * 0.95} height={345}>
+    <Svg width={width} height={345}>
       <Circle cx={width / 2} cy={height / 4 - 10} r={CIRCLE_RADIUS} stroke={BACKGROUND_COLOR_STROKE} strokeWidth={STROKE_WIDTH} />
       {/* <Text fill="red" stroke="none" fontSize="20" fontWeight="bold" x="180" y="180" textAnchor="middle">
         {text}
