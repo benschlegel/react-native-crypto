@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   scrollView: {
-    paddingTop: 30,
+    paddingTop: 25,
   },
   randomizeText: {
     color: TEXT_COLOR,
