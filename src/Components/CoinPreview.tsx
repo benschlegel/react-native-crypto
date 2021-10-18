@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text, Image, ImageProps } from 'react-native';
+import { useAnimatedStyle } from 'react-native-reanimated';
 import { TEXT_COLOR_GRAY, TEXT_COLOR_HIGHLIGHT } from '../Constants/Constants';
 
 interface CoinPreviewProps {
-  course?: number;
-  changePercentage?: number;
+  course: number;
+  changePercentage: number;
   image: ImageProps;
   abbreviation: string;
   fullname: string;
@@ -18,6 +19,7 @@ const FONT_SIZE_MAIN = 16;
 const FONT_SIZE_SECONDARY = 14;
 
 const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage }: CoinPreviewProps): React.ReactElement => {
+  const color = changePercentage >= 0 ? 'green' : 'red';
   return (
     <TouchableOpacity style={styles.button}>
       <View style={styles.container}>
@@ -29,8 +31,9 @@ const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage }
           <Text style={styles.textAbbreviation}>{abbreviation}</Text>
         </View>
         <View style={styles.changeContainer}>
-          <Text style={styles.textDailyChange}>{`${changePercentage?.toFixed(2)}%`}</Text>
-          <Text style={styles.textValueTotal}>$0.76</Text>
+          {/* TODO: use useStyle */}
+          <Text style={[styles.textDailyChange, { color }]}>{`${changePercentage?.toFixed(2)}%`}</Text>
+          <Text style={styles.textValueTotal}>{`$${course}`}</Text>
         </View>
       </View>
     </TouchableOpacity>

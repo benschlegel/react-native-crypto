@@ -16,6 +16,6 @@ export interface Coin {
   image: ImageProps;
   abbreviation: string;
   fullname: string;
-  course?: number;
-  changePercentage?: number;
+  course: number;
+  changePercentage: number;
 }
