@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { StackNavigationProps, DashboardRoutes } from '../DashboardRoutes';
-const CoinPrice = ({ navigation }: StackNavigationProps<DashboardRoutes, 'Details'>): React.ReactElement => {
+const CoinPrice = ({ navigation }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>): React.ReactElement => {
   return (
     <View style={styles.container}>
       <Text>CoinPrice</Text>

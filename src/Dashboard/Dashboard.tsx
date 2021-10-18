@@ -80,7 +80,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   const [refreshing, setRefreshing] = React.useState(false);
 
   const navigateDetails = useCallback(() => {
-    navigation.navigate('Portfolio');
+    navigation.navigate('CoinPrice');
   }, [navigation]);
 
   const randomizeChart = useCallback(() => {

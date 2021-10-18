@@ -14,14 +14,16 @@ import { Profile } from './src/Profile';
 import { TINT_COLOR } from './src/Constants/Constants';
 import { useFonts } from 'expo-font';
 import { createStackNavigator } from '@react-navigation/stack';
+import { CoinPrice } from './src/CoinPrice';
 
 export const Tab = createBottomTabNavigator<Routes>();
 export const Stack = createStackNavigator<DashboardRoutes>();
 
 function DashboardStack(): React.ReactElement {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Dashboard" component={Dashboard} />
+    <Stack.Navigator screenOptions={{ headerShown: false, animationTypeForReplace: 'pop' }}>
+      <Stack.Screen name="Home" component={Dashboard} />
+      <Stack.Screen name="CoinPrice" component={CoinPrice} />
     </Stack.Navigator>
   );
 }
@@ -68,7 +70,7 @@ export default function App(): React.ReactElement {
           tabBarInactiveTintColor: 'gray',
           headerShown: false,
         })}>
-        <Tab.Screen name="Dashboard" component={Dashboard} />
+        <Tab.Screen name="Dashboard" component={DashboardStack} />
         <Tab.Screen name="Portfolio" component={Portfolio} />
         <Tab.Screen name="Prices" component={Prices} />
         <Tab.Screen name="Profile" component={Profile} />
