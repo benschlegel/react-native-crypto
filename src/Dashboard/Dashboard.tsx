@@ -79,6 +79,10 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   const [dailyChange, setDailyChange] = useState(1.4);
   const [refreshing, setRefreshing] = React.useState(false);
 
+  const navigateDetails = useCallback(() => {
+    console.log('test');
+  }, []);
+
   const randomizeChart = useCallback(() => {
     const temp: PieData[] = Array.from(new Array(BARS), (el, i) => {
       return { y: getRandomInt(10, 200), label: COINS[i].abbreviation };
@@ -149,6 +153,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
                 fullname={coin.fullname}
                 course={coin.course}
                 changePercentage={coin.changePercentage}
+                callback={navigateDetails}
                 key={index}
               />
             );

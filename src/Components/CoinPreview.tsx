@@ -9,6 +9,7 @@ interface CoinPreviewProps {
   image: ImageProps;
   abbreviation: string;
   fullname: string;
+  callback?: () => void;
 }
 
 const HEIGHT = 80;
@@ -18,10 +19,10 @@ const MARGIN_TEXT = 4;
 const FONT_SIZE_MAIN = 16;
 const FONT_SIZE_SECONDARY = 14;
 
-const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage }: CoinPreviewProps): React.ReactElement => {
+const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage, callback }: CoinPreviewProps): React.ReactElement => {
   const color = changePercentage >= 0 ? 'green' : 'rgba(255, 85, 114, 0.95)';
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={callback}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image style={styles.tinyLogo} source={image} />
