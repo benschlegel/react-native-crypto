@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BalanceText;
+export default React.memo(BalanceText);

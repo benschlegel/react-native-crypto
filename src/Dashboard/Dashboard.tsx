@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, SafeAreaView, RefreshControl } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useSharedValue, withTiming, Easing } from 'react-native-reanimated';
-import { BACKGROUND_COLOR, PieData, TEXT_COLOR, TEXT_COLOR_GRAY, TINT_COLOR } from '../Constants/Constants';
+import { BACKGROUND_COLOR, Coin, PieData, TEXT_COLOR, TEXT_COLOR_GRAY, TINT_COLOR } from '../Constants/Constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import BalancePie from './BalancePie';
 import BalanceText from './BalanceText';
@@ -25,13 +25,13 @@ const wait = (timeout: number): Promise<number> => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const IMAGE_PATHS = [
-  'bitcoin-btc-logo.png',
-  'cardano-ada-logo.png',
-  'ethereum-eth-logo.png',
-  'polygon-matic-logo.png',
-  'solana-sol-logo.png',
-  'vechain-vet-logo.png',
+const COINS: Coin[] = [
+  { image: 'bitcoin-btc-logo.png', abbreviation: 'BTC', fullname: 'Bitcoin' },
+  { image: 'cardano-ada-logo.png', abbreviation: 'ADA', fullname: 'Cardano' },
+  { image: 'ethereum-eth-logo.png', abbreviation: 'ETH', fullname: 'Ethereum' },
+  { image: 'polygon-matic-logo.png', abbreviation: 'MATIC', fullname: 'Polygon' },
+  { image: 'solana-sol-logo.png', abbreviation: 'SOL', fullname: 'Solana' },
+  { image: 'vechain-vet-logo.png', abbreviation: 'VET', fullname: 'Vechain' },
 ];
 
 const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {
@@ -43,7 +43,8 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   const [refreshing, setRefreshing] = React.useState(false);
 
   const randomizeChart = useCallback(() => {
-    const temp: PieData[] = Array.from(new Array(BARS), () => {
+    const temp: PieData[] = Array.from(new Array(BARS), (el, i) => {
+      console.log(i);
       return { y: getRandomInt(10, 200) };
     });
 
@@ -102,8 +103,8 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
         </TouchableOpacity>
 
         {/* Favs section */}
-        {IMAGE_PATHS.map((image, index) => {
-          return <CoinPreview image={image} key={index} />;
+        {COINS.map((coin, index) => {
+          return <CoinPreview image={coin.image} key={index} />;
         })}
       </ScrollView>
     </SafeAreaView>
