@@ -32,17 +32,19 @@ export default function App(): React.ReactElement {
         initialRouteName={'Dashboard'}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-            // TODO: Refactor
             let iconName = '';
-            if (route.name === 'Dashboard') {
-              iconName = focused ? 'home-outline' : 'home';
-            } else if (route.name === 'Portfolio') {
-              iconName = focused ? 'wallet-outline' : 'wallet';
-            } else if (route.name === 'Prices') {
-              iconName = focused ? 'stats-chart-outline' : 'stats-chart';
-            } else {
-              //if no icon specified, default to planet
-              iconName = focused ? 'planet-outline' : 'planet';
+            switch (route.name) {
+              case 'Dashboard':
+                iconName = focused ? 'home-outline' : 'home';
+                break;
+              case 'Portfolio':
+                iconName = focused ? 'wallet-outline' : 'wallet';
+                break;
+              case 'Prices':
+                iconName = focused ? 'wallet-outline' : 'wallet';
+                break;
+              default:
+                iconName = focused ? 'planet-outline' : 'planet';
             }
 
             return (
@@ -51,7 +53,6 @@ export default function App(): React.ReactElement {
               </View>
             );
           },
-          // TODO: change colors to match scheme
           tabBarActiveTintColor: TINT_COLOR,
           tabBarInactiveTintColor: 'gray',
           headerShown: false,
