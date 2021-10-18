@@ -1,3 +1,5 @@
+import { ImageProps } from 'react-native';
+
 export const BACKGROUND_COLOR = '#F6FAFF'; //old: '#2E2E47'
 export const TEXT_COLOR = '#181C3A';
 export const TEXT_COLOR_HIGHLIGHT = '#0F1449';
@@ -10,7 +12,8 @@ export interface PieData {
 }
 
 export interface Coin {
-  image: string;
+  // eslint-disable-next-line no-undef
+  image: ImageProps;
   abbreviation: string;
   fullname: string;
   course?: number;

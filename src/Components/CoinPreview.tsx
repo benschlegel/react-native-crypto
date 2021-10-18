@@ -1,20 +1,23 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Text, Image, ImageProps } from 'react-native';
 
 interface CoinPreviewProps {
   course?: number;
   changePercentage?: number;
-  image: string;
+  image: ImageProps;
   abbreviation: string;
   fullname: string;
 }
+
+const HEIGHT = 80;
+const MARGIN_HORIZONTAL = 16;
 
 const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage }: CoinPreviewProps): React.ReactElement => {
   return (
     <TouchableOpacity style={styles.button}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Text>Test</Text>
+          <Image style={styles.tinyLogo} source={image} />
         </View>
         <View style={styles.nameContainer}>
           <Text style={styles.textFullname}>{fullname}</Text>
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    height: 80,
+    height: HEIGHT,
     flexDirection: 'row',
     marginBottom: 10,
     marginTop: 5,
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     alignSelf: 'flex-start',
     justifyContent: 'center',
-    marginLeft: 10,
+    marginLeft: MARGIN_HORIZONTAL,
   },
   nameContainer: {
     alignItems: 'flex-start',
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     alignSelf: 'flex-end',
     justifyContent: 'center',
-    marginRight: 10,
+    marginRight: MARGIN_HORIZONTAL,
   },
   textFullname: {
     textAlign: 'left',
@@ -82,6 +85,10 @@ const styles = StyleSheet.create({
   },
   textValueTotal: {
     textAlign: 'right',
+  },
+  tinyLogo: {
+    width: 40,
+    height: 40,
   },
 });
 
