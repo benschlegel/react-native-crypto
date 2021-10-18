@@ -140,7 +140,16 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
         {/* Favs section */}
         <View style={styles.favsContainer}>
           {COINS.map((coin, index) => {
-            return <CoinPreview image={coin.image} abbreviation={coin.abbreviation} fullname={coin.fullname} key={index} />;
+            return (
+              <CoinPreview
+                image={coin.image}
+                abbreviation={coin.abbreviation}
+                fullname={coin.fullname}
+                course={coin.course}
+                changePercentage={coin.changePercentage}
+                key={index}
+              />
+            );
           })}
         </View>
       </ScrollView>

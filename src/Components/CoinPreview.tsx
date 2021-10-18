@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text, Image, ImageProps } from 'react-native';
+import { TEXT_COLOR_HIGHLIGHT } from '../Constants/Constants';
 
 interface CoinPreviewProps {
   course?: number;
@@ -11,6 +12,7 @@ interface CoinPreviewProps {
 
 const HEIGHT = 80;
 const MARGIN_HORIZONTAL = 16;
+const MARGIN_TEXT = 4;
 
 const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage }: CoinPreviewProps): React.ReactElement => {
   return (
@@ -24,7 +26,7 @@ const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage }
           <Text style={styles.textAbbreviation}>{abbreviation}</Text>
         </View>
         <View style={styles.changeContainer}>
-          <Text style={styles.textDailyChange}>+3,65%</Text>
+          <Text style={styles.textDailyChange}>{`${changePercentage?.toFixed(2)}%`}</Text>
           <Text style={styles.textValueTotal}>$0.76</Text>
         </View>
       </View>
@@ -76,12 +78,17 @@ const styles = StyleSheet.create({
   },
   textFullname: {
     textAlign: 'left',
+    fontFamily: 'SF-Pro-Text-Bold',
+    color: TEXT_COLOR_HIGHLIGHT,
+    marginBottom: MARGIN_TEXT,
   },
   textAbbreviation: {
     textAlign: 'left',
   },
   textDailyChange: {
     textAlign: 'right',
+    fontFamily: 'SF-Pro-Text-Bold',
+    marginBottom: MARGIN_TEXT,
   },
   textValueTotal: {
     textAlign: 'right',
