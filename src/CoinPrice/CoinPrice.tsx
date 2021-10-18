@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, ScrollView, RefreshControl } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BACKGROUND_COLOR, TINT_COLOR } from '../Constants/Constants';
 import { wait } from '../Dashboard/Dashboard';
 
 const CoinPrice = (): React.ReactElement => {
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const insets = useSafeAreaInsets();
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(1200).then(() => {
       setRefreshing(false);
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   scrollView: {
+    flex: 1,
     // paddingTop: 10,
   },
 });

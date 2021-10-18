@@ -78,7 +78,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<DashboardRoutes, 'Home'>
   const [graphicData, setGraphicData] = useState<PieData[]>();
   const [angle, setAngle] = useState(0);
   const [dailyChange, setDailyChange] = useState(1.4);
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
   const navigateDetails = useCallback(() => {
     navigation.navigate('CoinPrice');
@@ -92,7 +92,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<DashboardRoutes, 'Home'>
     setGraphicData(temp);
   }, []);
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(1200).then(() => {
       setRefreshing(false);

@@ -13,7 +13,7 @@ import { Prices } from './src/Prices';
 import { Profile } from './src/Profile';
 import { BACKGROUND_COLOR, TEXT_COLOR, TINT_COLOR } from './src/Constants/Constants';
 import { useFonts } from 'expo-font';
-import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
+import { createStackNavigator, StackNavigationOptions, TransitionPresets } from '@react-navigation/stack';
 import { CoinPrice } from './src/CoinPrice';
 
 // TODO: export?
@@ -28,6 +28,8 @@ const CoinPriceOptions: StackNavigationOptions = {
   headerTitle: 'Price',
   headerStyle: { backgroundColor: BACKGROUND_COLOR },
   headerTitleStyle: { fontFamily: 'SF-Pro-Text-Semibold', color: TEXT_COLOR, fontSize: 22 },
+  // TODO: pick transition
+  ...TransitionPresets.ModalSlideFromBottomIOS,
 };
 
 function DashboardStack(): React.ReactElement {
