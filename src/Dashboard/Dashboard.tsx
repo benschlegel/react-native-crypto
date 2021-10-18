@@ -25,12 +25,12 @@ const wait = (timeout: number): Promise<number> => {
 };
 
 const COINS: Coin[] = [
-  { image: 'bitcoin-btc-logo.png', abbreviation: 'BTC', fullname: 'Bitcoin' },
-  { image: 'cardano-ada-logo.png', abbreviation: 'ADA', fullname: 'Cardano' },
-  { image: 'ethereum-eth-logo.png', abbreviation: 'ETH', fullname: 'Ethereum' },
-  { image: 'polygon-matic-logo.png', abbreviation: 'MATIC', fullname: 'Polygon' },
-  { image: 'solana-sol-logo.png', abbreviation: 'SOL', fullname: 'Solana' },
-  { image: 'vechain-vet-logo.png', abbreviation: 'VET', fullname: 'Vechain' },
+  { image: 'bitcoin-btc-logo.png', abbreviation: 'BTC', fullname: 'Bitcoin', course: 61863.84, changePercentage: 0.84 },
+  { image: 'cardano-ada-logo.png', abbreviation: 'ADA', fullname: 'Cardano', course: 2.14, changePercentage: -2.03 },
+  { image: 'ethereum-eth-logo.png', abbreviation: 'ETH', fullname: 'Ethereum', course: 3816.53, changePercentage: -1.94 },
+  { image: 'polygon-matic-logo.png', abbreviation: 'MATIC', fullname: 'Polygon', course: 1.54, changePercentage: 1.49 },
+  { image: 'solana-sol-logo.png', abbreviation: 'SOL', fullname: 'Solana', course: 156.81, changePercentage: -5.45 },
+  { image: 'vechain-vet-logo.png', abbreviation: 'VET', fullname: 'Vechain', course: 0.1186, changePercentage: 0.06 },
 ];
 
 const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {

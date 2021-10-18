@@ -9,7 +9,7 @@ interface CoinPreviewProps {
   fullname: string;
 }
 
-const CoinPreview = ({}: CoinPreviewProps): React.ReactElement => {
+const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage }: CoinPreviewProps): React.ReactElement => {
   return (
     <TouchableOpacity style={styles.button}>
       <View style={styles.container}>
@@ -17,8 +17,8 @@ const CoinPreview = ({}: CoinPreviewProps): React.ReactElement => {
           <Text>Test</Text>
         </View>
         <View style={styles.nameContainer}>
-          <Text style={styles.textFullname}>Bitcoin</Text>
-          <Text style={styles.textAbbreviation}>BTC</Text>
+          <Text style={styles.textFullname}>{fullname}</Text>
+          <Text style={styles.textAbbreviation}>{abbreviation}</Text>
         </View>
         <View style={styles.changeContainer}>
           <Text style={styles.textDailyChange}>+3,65%</Text>
