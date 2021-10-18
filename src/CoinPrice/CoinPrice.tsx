@@ -1,12 +1,36 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { BACKGROUND_COLOR } from '../Constants/Constants';
+import { StyleSheet, View, Text, SafeAreaView, ScrollView, RefreshControl } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { BACKGROUND_COLOR, TINT_COLOR } from '../Constants/Constants';
+import { wait } from '../Dashboard/Dashboard';
 
 const CoinPrice = (): React.ReactElement => {
+  const [refreshing, setRefreshing] = React.useState(false);
+  const insets = useSafeAreaInsets();
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(1200).then(() => {
+      setRefreshing(false);
+      console.log('refresh');
+    });
+  }, []);
   return (
-    <View style={styles.container}>
-      <Text>CoinPrice</Text>
-    </View>
+    <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
+      <ScrollView
+        style={styles.scrollView}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            progressViewOffset={62}
+            tintColor={TINT_COLOR}
+            colors={[TINT_COLOR]}
+          />
+        }>
+        <Text>CoinPrice</Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -16,6 +40,9 @@ const styles = StyleSheet.create({
     backgroundColor: BACKGROUND_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  scrollView: {
+    // paddingTop: 10,
   },
 });
 

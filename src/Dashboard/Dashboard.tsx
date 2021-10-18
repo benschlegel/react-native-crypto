@@ -22,7 +22,7 @@ function getRandomInt(min: number, max: number): number {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-const wait = (timeout: number): Promise<number> => {
+export const wait = (timeout: number): Promise<number> => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
@@ -125,7 +125,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<DashboardRoutes, 'Home'>
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            progressViewOffset={45}
+            progressViewOffset={22}
             tintColor={TINT_COLOR}
             colors={[TINT_COLOR]}
           />
