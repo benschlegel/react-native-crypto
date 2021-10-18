@@ -2,7 +2,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, SafeAreaView, RefreshControl } from 'react-native';
-import { Routes, StackNavigationProps } from '../Routes';
+// import { Routes, StackNavigationProps } from '../Routes';
+import { DashboardRoutes, StackNavigationProps } from '../DashboardRoutes';
 import { useSharedValue, withTiming, Easing } from 'react-native-reanimated';
 import { BACKGROUND_COLOR, Coin, PieData, TEXT_COLOR, TEXT_COLOR_HIGHLIGHT, TINT_COLOR } from '../Constants/Constants';
 import BalancePie from './BalancePie';
@@ -71,7 +72,7 @@ const COINS: Coin[] = [
   },
 ];
 
-const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): React.ReactElement => {
+const Dashboard = ({ navigation }: StackNavigationProps<DashboardRoutes, 'Home'>): React.ReactElement => {
   const insets = useSafeAreaInsets();
   const balance = useSharedValue(BALANCE * 0.85);
   const [graphicData, setGraphicData] = useState<PieData[]>();
