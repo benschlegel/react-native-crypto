@@ -2,6 +2,7 @@
 // import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import type { Routes } from './src/Routes';
+import type { DashboardRoutes } from './src/DashboardRoutes';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -12,8 +13,18 @@ import { Prices } from './src/Prices';
 import { Profile } from './src/Profile';
 import { TINT_COLOR } from './src/Constants/Constants';
 import { useFonts } from 'expo-font';
+import { createStackNavigator } from '@react-navigation/stack';
 
 export const Tab = createBottomTabNavigator<Routes>();
+export const Stack = createStackNavigator<DashboardRoutes>();
+
+function DashboardStack(): React.ReactElement {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Dashboard" component={Dashboard} />
+    </Stack.Navigator>
+  );
+}
 
 export default function App(): React.ReactElement {
   const [loaded] = useFonts({
