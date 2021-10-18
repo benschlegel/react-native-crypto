@@ -12,7 +12,7 @@ import CoinPreview from '../Components/CoinPreview';
 
 const BALANCE_DURATION = 1500;
 const BALANCE = 3312.73;
-const BARS = 5;
+const BARS = 6;
 
 const MARGIN_SIDES = 30;
 
@@ -44,8 +44,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
 
   const randomizeChart = useCallback(() => {
     const temp: PieData[] = Array.from(new Array(BARS), (el, i) => {
-      console.log(i);
-      return { y: getRandomInt(10, 200) };
+      return { y: getRandomInt(10, 200), label: COINS[i].abbreviation };
     });
 
     setGraphicData(temp);

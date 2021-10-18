@@ -11,7 +11,6 @@ interface BalanceTextProps {
 }
 
 const BalanceText = ({ balance, isRefreshing, dailyChange }: BalanceTextProps): React.ReactElement => {
-  console.log('render');
   const textStyle = useAnimatedStyle(() => {
     return {
       opacity: isRefreshing ? withTiming(0.5) : withTiming(1),
