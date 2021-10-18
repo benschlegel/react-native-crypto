@@ -17,8 +17,8 @@ export const Tab = createBottomTabNavigator<Routes>();
 
 export default function App(): React.ReactElement {
   const [loaded] = useFonts({
-    'SF-Pro-Text-Bold': require('./assets/fonts/SF-Pro-Text-Regular.otf'),
-    'SF-Pro-Text-Regular': require('./assets/fonts/SF-Pro-Text-Bold.otf'),
+    'SF-Pro-Text-Regular': require('./assets/fonts/SF-Pro-Text-Regular.otf'),
+    'SF-Pro-Text-Bold': require('./assets/fonts/SF-Pro-Text-Bold.otf'),
     'SF-Pro-Text-Semibold': require('./assets/fonts/SF-Pro-Text-Semibold.otf'),
   });
 

@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     width: '100%',
-    fontFamily: 'SF-Pro-Text-Bold',
+    fontFamily: 'SF-Pro-Text-Regular',
   },
   dailyChange: {
     textAlign: 'center',
-    fontFamily: 'SF-Pro-Text-Bold',
+    fontFamily: 'SF-Pro-Text-Regular',
     fontSize: 16,
     opacity: 0.6,
   },

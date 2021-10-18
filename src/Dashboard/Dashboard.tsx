@@ -1,10 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, SafeAreaView, RefreshControl } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useSharedValue, withTiming, Easing } from 'react-native-reanimated';
-import { BACKGROUND_COLOR, Coin, PieData, TEXT_COLOR, TEXT_COLOR_GRAY, TINT_COLOR } from '../Constants/Constants';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { BACKGROUND_COLOR, Coin, PieData, TEXT_COLOR, TINT_COLOR } from '../Constants/Constants';
 import BalancePie from './BalancePie';
 import BalanceText from './BalanceText';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -149,12 +148,12 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 20,
     color: 'gray',
-    fontFamily: 'SF-Pro-Text-Regular',
+    fontFamily: 'SF-Pro-Text-Bold',
   },
   textName: {
     textAlign: 'left',
     fontSize: 26,
-    fontFamily: 'SF-Pro-Text-Regular',
+    fontFamily: 'SF-Pro-Text-Bold',
   },
   balanceText: {
     textAlign: 'center',
