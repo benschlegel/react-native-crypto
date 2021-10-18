@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { StackNavigationProps, DashboardRoutes } from '../DashboardRoutes';
-const CoinPrice = ({ navigation }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>): React.ReactElement => {
+import { BACKGROUND_COLOR } from '../Constants/Constants';
+
+const CoinPrice = (): React.ReactElement => {
   return (
     <View style={styles.container}>
       <Text>CoinPrice</Text>
@@ -12,7 +13,7 @@ const CoinPrice = ({ navigation }: StackNavigationProps<DashboardRoutes, 'CoinPr
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: BACKGROUND_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
   },

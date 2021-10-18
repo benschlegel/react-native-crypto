@@ -208,6 +208,8 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 26,
     fontFamily: 'SF-Pro-Text-Bold',
+    color: TEXT_COLOR,
+    opacity: 0.9,
   },
   balanceText: {
     textAlign: 'center',
@@ -231,7 +233,7 @@ const styles = StyleSheet.create({
   },
   favsText: {
     fontFamily: 'SF-Pro-Text-Semibold',
-    fontSize: 28,
+    fontSize: 26,
     marginLeft: 20,
     marginBottom: 12,
     color: TEXT_COLOR_HIGHLIGHT,

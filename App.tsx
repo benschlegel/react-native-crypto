@@ -11,9 +11,9 @@ import { View, StyleSheet } from 'react-native';
 import { Portfolio } from './src/Portfolio';
 import { Prices } from './src/Prices';
 import { Profile } from './src/Profile';
-import { TINT_COLOR } from './src/Constants/Constants';
+import { BACKGROUND_COLOR, TEXT_COLOR, TINT_COLOR } from './src/Constants/Constants';
 import { useFonts } from 'expo-font';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import { CoinPrice } from './src/CoinPrice';
 
 // TODO: export?
@@ -23,11 +23,18 @@ import { CoinPrice } from './src/CoinPrice';
 export const Tab = createBottomTabNavigator<Routes>();
 export const Stack = createStackNavigator<DashboardRoutes>();
 
+const CoinPriceOptions: StackNavigationOptions = {
+  headerShown: true,
+  headerTitle: 'Price',
+  headerStyle: { backgroundColor: BACKGROUND_COLOR },
+  headerTitleStyle: { fontFamily: 'SF-Pro-Text-Semibold', color: TEXT_COLOR, fontSize: 22 },
+};
+
 function DashboardStack(): React.ReactElement {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false, animationTypeForReplace: 'pop' }}>
       <Stack.Screen name="Home" component={Dashboard} options={{ headerShown: false }} />
-      <Stack.Screen name="CoinPrice" component={CoinPrice} options={{ headerShown: true }} />
+      <Stack.Screen name="CoinPrice" component={CoinPrice} options={CoinPriceOptions} />
     </Stack.Navigator>
   );
 }
