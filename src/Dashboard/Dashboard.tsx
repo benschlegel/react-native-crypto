@@ -104,7 +104,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
 
         {/* Favs section */}
         {COINS.map((coin, index) => {
-          return <CoinPreview image={coin.image} key={index} />;
+          return <CoinPreview image={coin.image} abbreviation={coin.abbreviation} fullname={coin.fullname} key={index} />;
         })}
       </ScrollView>
     </SafeAreaView>

@@ -24,4 +24,6 @@ export interface Coin {
   image: string;
   abbreviation: string;
   fullname: string;
+  course?: number;
+  changePercentage?: number;
 }

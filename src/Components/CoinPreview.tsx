@@ -4,8 +4,9 @@ import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 interface CoinPreviewProps {
   course?: number;
   changePercentage?: number;
-  isPositive?: boolean;
   image: string;
+  abbreviation: string;
+  fullname: string;
 }
 
 const CoinPreview = ({}: CoinPreviewProps): React.ReactElement => {
