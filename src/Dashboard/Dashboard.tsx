@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, SafeAreaView, RefreshControl } from 'react-native';
 import { Routes, StackNavigationProps } from '../Routes';
 import { useSharedValue, withTiming, Easing } from 'react-native-reanimated';
-import { BACKGROUND_COLOR, Coin, PieData, TEXT_COLOR, TINT_COLOR } from '../Constants/Constants';
+import { BACKGROUND_COLOR, Coin, PieData, TEXT_COLOR, TEXT_COLOR_HIGHLIGHT, TINT_COLOR } from '../Constants/Constants';
 import BalancePie from './BalancePie';
 import BalanceText from './BalanceText';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -25,6 +25,7 @@ const wait = (timeout: number): Promise<number> => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
+// mock data
 const COINS: Coin[] = [
   {
     image: require('../../assets/images/bitcoin-btc-logo.png'),
@@ -139,6 +140,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
 
         {/* Favs section */}
         <View style={styles.favsContainer}>
+          <Text style={styles.favsText}>Favorites</Text>
           {COINS.map((coin, index) => {
             return (
               <CoinPreview
@@ -220,6 +222,14 @@ const styles = StyleSheet.create({
     // borderTopLeftRadius: 40,
     // borderTopRightRadius: 40,
     // backgroundColor: 'white',
+  },
+  favsText: {
+    fontFamily: 'SF-Pro-Text-Semibold',
+    fontSize: 28,
+    marginLeft: 20,
+    marginBottom: 12,
+    color: TEXT_COLOR_HIGHLIGHT,
+    opacity: 0.85,
   },
 });
 

@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   textDailyChange: {
     textAlign: 'right',
-    fontFamily: 'SF-Pro-Text-Bold',
+    fontFamily: 'SF-Pro-Text-Semibold',
     marginBottom: MARGIN_TEXT,
     fontSize: FONT_SIZE_MAIN,
   },
