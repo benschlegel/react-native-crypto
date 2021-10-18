@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Dashboard } from './src/Dashboard';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Portfolio } from './src/Portfolio';
 import { Prices } from './src/Prices';
 import { Profile } from './src/Profile';
@@ -35,7 +35,7 @@ export default function App(): React.ReactElement {
             // TODO: Refactor
             let iconName = '';
             if (route.name === 'Dashboard') {
-              iconName = focused ? 'fitness-outline' : 'fitness';
+              iconName = focused ? 'home-outline' : 'home';
             } else if (route.name === 'Portfolio') {
               iconName = focused ? 'wallet-outline' : 'wallet';
             } else if (route.name === 'Prices') {
@@ -46,7 +46,7 @@ export default function App(): React.ReactElement {
             }
 
             return (
-              <View>
+              <View style={styles.tabContainer}>
                 <Ionicons name={iconName} size={size} color={color} />
               </View>
             );
@@ -64,3 +64,7 @@ export default function App(): React.ReactElement {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  tabContainer: { marginTop: 5 },
+});
