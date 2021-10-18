@@ -98,14 +98,16 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
         </View>
         <BalanceText balance={balance} isRefreshing={refreshing} dailyChange={dailyChange} />
         <BalancePie data={graphicData} isRefreshing={refreshing} angle={angle} />
-        <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
+        {/* <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
           <Text style={styles.randomizeText}>Randomize</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         {/* Favs section */}
-        {COINS.map((coin, index) => {
-          return <CoinPreview image={coin.image} abbreviation={coin.abbreviation} fullname={coin.fullname} key={index} />;
-        })}
+        <View style={styles.favsContainer}>
+          {COINS.map((coin, index) => {
+            return <CoinPreview image={coin.image} abbreviation={coin.abbreviation} fullname={coin.fullname} key={index} />;
+          })}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -118,24 +120,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  randomizeContainer: {
-    marginTop: 15,
-    marginBottom: 5,
-    width: 200,
-    height: 45,
-    borderRadius: 26,
-    backgroundColor: 'turquoise',
-    opacity: 0.8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
+  // randomizeContainer: {
+  //   marginTop: 15,
+  //   marginBottom: 5,
+  //   width: 200,
+  //   height: 45,
+  //   borderRadius: 26,
+  //   backgroundColor: 'turquoise',
+  //   opacity: 0.8,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   alignSelf: 'center',
+  // },
+  // randomizeText: {
+  //   color: TEXT_COLOR,
+  //   fontFamily: 'SF-Pro-Text-Semibold',
+  // },
   scrollView: {
     paddingTop: 25,
-  },
-  randomizeText: {
-    color: TEXT_COLOR,
-    fontFamily: 'SF-Pro-Text-Semibold',
   },
   textNameContainer: {
     paddingTop: 0,
@@ -157,7 +159,7 @@ const styles = StyleSheet.create({
   },
   balanceText: {
     textAlign: 'center',
-    fontSize: 26,
+    fontSize: 24,
     fontFamily: 'SF-Pro-Text-Semibold',
     color: TEXT_COLOR,
   },
@@ -167,6 +169,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',
+  },
+  favsContainer: {
+    marginTop: 26,
   },
 });
 
