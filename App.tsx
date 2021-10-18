@@ -16,14 +16,18 @@ import { useFonts } from 'expo-font';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CoinPrice } from './src/CoinPrice';
 
+// TODO: export?
+// TODO: notification icon on dashboard?
+// TODO: heart icon on details/coinprice?
+// TODO: chart labels
 export const Tab = createBottomTabNavigator<Routes>();
 export const Stack = createStackNavigator<DashboardRoutes>();
 
 function DashboardStack(): React.ReactElement {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false, animationTypeForReplace: 'pop' }}>
-      <Stack.Screen name="Home" component={Dashboard} />
-      <Stack.Screen name="CoinPrice" component={CoinPrice} />
+      <Stack.Screen name="Home" component={Dashboard} options={{ headerShown: false }} />
+      <Stack.Screen name="CoinPrice" component={CoinPrice} options={{ headerShown: true }} />
     </Stack.Navigator>
   );
 }
