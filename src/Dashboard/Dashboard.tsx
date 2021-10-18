@@ -80,8 +80,8 @@ const Dashboard = ({ navigation }: StackNavigationProps<Routes, 'Dashboard'>): R
   const [refreshing, setRefreshing] = React.useState(false);
 
   const navigateDetails = useCallback(() => {
-    console.log('test');
-  }, []);
+    navigation.navigate('Portfolio');
+  }, [navigation]);
 
   const randomizeChart = useCallback(() => {
     const temp: PieData[] = Array.from(new Array(BARS), (el, i) => {
