@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text, Image, ImageProps } from 'react-native';
-import { TEXT_COLOR_HIGHLIGHT } from '../Constants/Constants';
+import { TEXT_COLOR_GRAY, TEXT_COLOR_HIGHLIGHT } from '../Constants/Constants';
 
 interface CoinPreviewProps {
   course?: number;
@@ -13,6 +13,9 @@ interface CoinPreviewProps {
 const HEIGHT = 80;
 const MARGIN_HORIZONTAL = 16;
 const MARGIN_TEXT = 4;
+
+const FONT_SIZE_MAIN = 16;
+const FONT_SIZE_SECONDARY = 14;
 
 const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage }: CoinPreviewProps): React.ReactElement => {
   return (
@@ -67,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     alignSelf: 'flex-start',
     justifyContent: 'center',
-    marginLeft: 10,
+    marginLeft: 16,
     flex: 1,
   },
   changeContainer: {
@@ -81,17 +84,25 @@ const styles = StyleSheet.create({
     fontFamily: 'SF-Pro-Text-Bold',
     color: TEXT_COLOR_HIGHLIGHT,
     marginBottom: MARGIN_TEXT,
+    fontSize: FONT_SIZE_MAIN,
   },
   textAbbreviation: {
     textAlign: 'left',
+    fontFamily: 'SF-Pro-Text-Semibold',
+    fontSize: FONT_SIZE_SECONDARY,
+    color: TEXT_COLOR_GRAY,
   },
   textDailyChange: {
     textAlign: 'right',
     fontFamily: 'SF-Pro-Text-Bold',
     marginBottom: MARGIN_TEXT,
+    fontSize: FONT_SIZE_MAIN,
   },
   textValueTotal: {
     textAlign: 'right',
+    fontSize: FONT_SIZE_SECONDARY,
+    fontFamily: 'SF-Pro-Text-Semibold',
+    color: TEXT_COLOR_GRAY,
   },
   tinyLogo: {
     width: 40,
