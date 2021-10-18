@@ -170,6 +170,10 @@ const styles = StyleSheet.create({
   },
   favsContainer: {
     marginTop: 26,
+    // paddingTop: 26,
+    // borderTopLeftRadius: 40,
+    // borderTopRightRadius: 40,
+    // backgroundColor: 'white',
   },
 });
 

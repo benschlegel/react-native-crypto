@@ -28,14 +28,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 1,
     //Shadows for android
-    elevation: 1,
-
+    elevation: 0.35,
     borderRadius: 20,
     width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    height: 70,
+    height: 80,
     flexDirection: 'row',
     marginBottom: 10,
     marginTop: 5,
