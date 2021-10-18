@@ -19,7 +19,7 @@ const FONT_SIZE_MAIN = 16;
 const FONT_SIZE_SECONDARY = 14;
 
 const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage }: CoinPreviewProps): React.ReactElement => {
-  const color = changePercentage >= 0 ? 'green' : 'red';
+  const color = changePercentage >= 0 ? 'green' : 'rgba(255, 85, 114, 0.95)';
   return (
     <TouchableOpacity style={styles.button}>
       <View style={styles.container}>

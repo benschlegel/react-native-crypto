@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   //   fontFamily: 'SF-Pro-Text-Semibold',
   // },
   scrollView: {
-    paddingTop: 25,
+    paddingTop: 20,
   },
   textNameContainer: {
     paddingTop: 0,
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   favsContainer: {
-    marginTop: 26,
+    marginTop: 16,
     // paddingTop: 26,
     // borderTopLeftRadius: 40,
     // borderTopRightRadius: 40,
