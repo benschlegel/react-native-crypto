@@ -3,11 +3,11 @@ import { StyleSheet, View, Text, SafeAreaView, ScrollView, RefreshControl } from
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BACKGROUND_COLOR, TINT_COLOR } from '../Constants/Constants';
 import { wait } from '../Dashboard/Dashboard';
+import { DashboardRoutes, StackNavigationProps } from '../DashboardRoutes';
 
-const CoinPrice = (): React.ReactElement => {
+const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>): React.ReactElement => {
   const [refreshing, setRefreshing] = useState(false);
   const insets = useSafeAreaInsets();
-
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(1200).then(() => {
@@ -28,7 +28,7 @@ const CoinPrice = (): React.ReactElement => {
             colors={[TINT_COLOR]}
           />
         }>
-        <Text>CoinPrice</Text>
+        <Text>{route.params?.coin}</Text>
       </ScrollView>
     </SafeAreaView>
   );

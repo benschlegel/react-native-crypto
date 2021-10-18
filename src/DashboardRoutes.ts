@@ -8,5 +8,5 @@ export interface StackNavigationProps<ParamList extends ParamListBase, RouteName
 
 export type DashboardRoutes = {
   Home: undefined;
-  CoinPrice: undefined;
+  CoinPrice: { coin: string };
 };
