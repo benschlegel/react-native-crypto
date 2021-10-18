@@ -80,9 +80,12 @@ const Dashboard = ({ navigation }: StackNavigationProps<DashboardRoutes, 'Home'>
   const [dailyChange, setDailyChange] = useState(1.4);
   const [refreshing, setRefreshing] = useState(false);
 
-  const navigateDetails = useCallback(() => {
-    navigation.navigate('CoinPrice', { coin: 'joeseph' });
-  }, [navigation]);
+  const navigateDetails = useCallback(
+    (coin: Coin) => () => {
+      navigation.navigate('CoinPrice', { coin: coin });
+    },
+    [navigation],
+  );
 
   const randomizeChart = useCallback(() => {
     const temp: PieData[] = Array.from(new Array(BARS), (el, i) => {
@@ -154,7 +157,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<DashboardRoutes, 'Home'>
                 fullname={coin.fullname}
                 course={coin.course}
                 changePercentage={coin.changePercentage}
-                callback={navigateDetails}
+                callback={navigateDetails(coin)}
                 key={index}
               />
             );

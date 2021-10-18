@@ -28,7 +28,7 @@ const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>
             colors={[TINT_COLOR]}
           />
         }>
-        <Text>{route.params?.coin}</Text>
+        <Text>{route.params?.coin.fullname}</Text>
       </ScrollView>
     </SafeAreaView>
   );
