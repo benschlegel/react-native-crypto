@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text, Image, ImageProps } from 'react-native';
 import { useAnimatedStyle } from 'react-native-reanimated';
-import { TEXT_COLOR_GRAY, TEXT_COLOR_HIGHLIGHT } from '../Constants/Constants';
+import { currencyFormat, TEXT_COLOR_GRAY, TEXT_COLOR_HIGHLIGHT } from '../Constants/Constants';
 
 interface CoinPreviewProps {
+  // TODO: use coin interface
   course: number;
   changePercentage: number;
   image: ImageProps;
@@ -34,7 +35,7 @@ const CoinPreview = ({ image, abbreviation, fullname, course, changePercentage, 
         <View style={styles.changeContainer}>
           {/* TODO: use useStyle */}
           <Text style={[styles.textDailyChange, { color }]}>{`${changePercentage?.toFixed(2)}%`}</Text>
-          <Text style={styles.textValueTotal}>{`$${course}`}</Text>
+          <Text style={styles.textValueTotal}>{currencyFormat(course)}</Text>
         </View>
       </View>
     </TouchableOpacity>
