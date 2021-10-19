@@ -48,7 +48,7 @@ const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            progressViewOffset={62}
+            progressViewOffset={90}
             tintColor={TINT_COLOR}
             colors={[TINT_COLOR]}
           />
