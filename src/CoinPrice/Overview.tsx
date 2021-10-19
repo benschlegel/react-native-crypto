@@ -42,7 +42,7 @@ const Overview = ({ abbreviation }: OverviewProps): React.ReactElement => {
 const styles = StyleSheet.create({
   overviewCard: {
     marginHorizontal: MARGIN_OUTER,
-    marginTop: 10,
+    marginTop: 30,
     backgroundColor: '#FFF',
     //Shadows for ios
     shadowColor: 'rgba(0,0,0, .4)',

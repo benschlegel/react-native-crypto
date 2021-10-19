@@ -6,6 +6,8 @@ export const TEXT_COLOR_HIGHLIGHT = '#0F1449';
 export const TEXT_COLOR_GRAY = '#727173';
 export const TINT_COLOR = '#FC5185';
 
+export const MARGIN_OUTER = 24;
+
 export interface PieData {
   y: number;
   label?: string;

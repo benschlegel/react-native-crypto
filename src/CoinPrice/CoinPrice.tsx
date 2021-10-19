@@ -1,21 +1,24 @@
 import React, { useCallback, useState } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, ScrollView, RefreshControl, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { VictoryChart, VictoryLine } from 'victory-native';
-import { BACKGROUND_COLOR, currencyFormat, TEXT_COLOR, TEXT_COLOR_HIGHLIGHT, TINT_COLOR } from '../Constants/Constants';
+import { BACKGROUND_COLOR, currencyFormat, TEXT_COLOR, TEXT_COLOR_HIGHLIGHT, TINT_COLOR, MARGIN_OUTER } from '../Constants/Constants';
 import { wait } from '../Dashboard/Dashboard';
 import { DashboardRoutes, StackNavigationProps } from '../DashboardRoutes';
+import InteractionButtons from './InteractionButtons';
 import Overview from './Overview';
 
-const MARGIN_OUTER = 24;
-
 const SAMPLE_DATA = [
-  { x: 0, y: 2 },
-  { x: 45, y: 3 },
-  { x: 90, y: 5 },
-  { x: 135, y: 4 },
-  { x: 180, y: 7 },
+  { x: new Date(1982, 1, 1), y: 125 },
+  { x: new Date(1987, 1, 1), y: 257 },
+  { x: new Date(1993, 1, 1), y: 345 },
+  { x: new Date(1997, 1, 1), y: 515 },
+  { x: new Date(2001, 1, 1), y: 132 },
+  { x: new Date(2005, 1, 1), y: 305 },
+  { x: new Date(2011, 1, 1), y: 270 },
+  { x: new Date(2015, 1, 1), y: 470 },
 ];
 
 const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>): React.ReactElement => {
@@ -72,6 +75,9 @@ const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>
         <VictoryChart minDomain={{ y: 0 }}>
           <VictoryLine data={SAMPLE_DATA} />
         </VictoryChart>
+
+        {/* Buttons */}
+        <InteractionButtons />
 
         {/* Overview */}
         <Overview abbreviation={abbreviation} />
