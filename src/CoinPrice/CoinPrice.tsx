@@ -60,7 +60,7 @@ const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>
         </View>
 
         {/* Overview */}
-        <Overview />
+        <Overview abbreviation={abbreviation} />
       </ScrollView>
     </SafeAreaView>
   );

@@ -4,7 +4,11 @@ import { TEXT_COLOR, TEXT_COLOR_HIGHLIGHT } from '../Constants/Constants';
 
 const MARGIN_OUTER = 24;
 
-const Overview = (): React.ReactElement => {
+interface OverviewProps {
+  abbreviation: string;
+}
+
+const Overview = ({ abbreviation }: OverviewProps): React.ReactElement => {
   return (
     <View style={styles.overviewCard}>
       <View style={styles.overviewContainer}>
