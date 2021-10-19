@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { MARGIN_OUTER } from '../Constants/Constants';
+import { MARGIN_OUTER, TEXT_COLOR_HIGHLIGHT, TINT_COLOR } from '../Constants/Constants';
 
-const BUTTON_LABELS = ['1D', '7D', '1M', '1Y', 'All'];
+interface BUTTON_INTERFACE {
+  label: string;
+  isActive: boolean;
+}
+
+const BUTTON_LABELS: BUTTON_INTERFACE[] = [
+  { label: '1D', isActive: true },
+  { label: '7D', isActive: false },
+  { label: '1M', isActive: false },
+  { label: '1Y', isActive: false },
+  { label: 'All', isActive: false },
+];
 
 const InteractionButtons = (): React.ReactElement => {
+  const changeActive = useCallback(
+    (index: number) => () => {
+      console.log('index:' + index);
+    },
+    [],
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.dateSelectionContainer}>
         <View style={styles.buttonContainer}>
           {BUTTON_LABELS.map((button, index) => {
             return (
-              <TouchableOpacity key={index} style={styles.button}>
-                <Text>{button}</Text>
+              <TouchableOpacity key={index} style={button.isActive ? styles.activeButton : styles.button} onPress={changeActive(index)}>
+                <Text style={[styles.buttonText, { color: button.isActive ? '#FFF' : TEXT_COLOR_HIGHLIGHT }]}>{button.label}</Text>
               </TouchableOpacity>
             );
           })}
@@ -29,7 +47,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   dateSelectionContainer: {
-    height: 50,
+    height: 60,
     backgroundColor: '#FFF',
     //Shadows for ios
     shadowColor: 'rgba(0,0,0, .4)',
@@ -52,9 +70,21 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center',
+    height: 30,
     // marginHorizontal: MARGIN_OUTER / 2,
   },
+  activeButton: {
+    backgroundColor: TINT_COLOR,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // height: '60%',
+    // width: '100%',
+    height: 36,
+    width: 56,
+    borderRadius: 20,
+    opacity: 0.9,
+  },
+  buttonText: { fontSize: 14, fontFamily: 'SF-Pro-Text-Semibold' },
 });
 
 export default InteractionButtons;
