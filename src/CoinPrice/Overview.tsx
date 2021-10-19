@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     //Shadows for android
     elevation: 0.45,
     borderRadius: 20,
-    marginBottom: 14,
+    marginBottom: 20,
   },
   overviewContainer: {
     marginHorizontal: MARGIN_OUTER,

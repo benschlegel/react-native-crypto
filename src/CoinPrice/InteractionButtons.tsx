@@ -20,6 +20,7 @@ const InteractionButtons = (): React.ReactElement => {
   const changeActive = useCallback(
     (index: number) => () => {
       console.log('index:' + index);
+      // change active button
     },
     [],
   );
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: MARGIN_OUTER,
     flexDirection: 'row',
+    marginVertical: 6,
   },
   dateSelectionContainer: {
     height: 60,

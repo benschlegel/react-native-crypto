@@ -73,7 +73,12 @@ const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>
 
         {/* Chart */}
         <VictoryChart minDomain={{ y: 0 }}>
-          <VictoryLine data={SAMPLE_DATA} />
+          <VictoryLine
+            data={SAMPLE_DATA}
+            style={{
+              data: { stroke: TINT_COLOR },
+            }}
+          />
         </VictoryChart>
 
         {/* Buttons */}
