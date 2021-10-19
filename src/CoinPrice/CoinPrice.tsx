@@ -59,9 +59,16 @@ const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>
         </View>
 
         {/* Overview */}
+        {/* TODO: refactor to own component */}
         <View style={styles.overviewCard}>
           <View style={styles.overviewContainer}>
             <Text style={styles.fullnameText}>You own</Text>
+
+            <Text style={[styles.courseText, { marginTop: 10 }]}>$236.15</Text>
+            <View style={styles.overviewDetailsContainer}>
+              <Text style={styles.smallHeaderText}>Total return</Text>
+              <Text style={styles.smallHeaderText}>24h return</Text>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -134,6 +141,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     opacity: 0.95,
     marginBottom: 4,
+  },
+  smallHeaderText: {
+    textAlign: 'left',
+    fontFamily: 'SF-Pro-Text-Regular',
+    fontSize: 14,
+    opacity: 0.9,
+  },
+  overviewDetailsContainer: {
+    marginTop: 10,
   },
 });
 
