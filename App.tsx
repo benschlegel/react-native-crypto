@@ -16,12 +16,10 @@ import { useFonts } from 'expo-font';
 import { createStackNavigator, StackNavigationOptions, TransitionPresets } from '@react-navigation/stack';
 import { CoinPrice } from './src/CoinPrice';
 
-// TODO: export?
-// TODO: notification icon on dashboard?
-// TODO: heart icon on details/coinprice?
-// TODO: chart labels
-export const Tab = createBottomTabNavigator<Routes>();
-export const Stack = createStackNavigator<DashboardRoutes>();
+// TODO: notification icon on dashboard
+// TODO: heart icon on details/coinprice
+const Tab = createBottomTabNavigator<Routes>();
+const Stack = createStackNavigator<DashboardRoutes>();
 
 const CoinPriceOptions: StackNavigationOptions = {
   headerShown: true,

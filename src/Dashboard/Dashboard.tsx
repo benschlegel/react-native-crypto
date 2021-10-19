@@ -141,7 +141,7 @@ const Dashboard = ({ navigation }: StackNavigationProps<DashboardRoutes, 'Home'>
           <Text style={styles.balanceText}>Balance</Text>
         </View>
         <BalanceText balance={balance} isRefreshing={refreshing} dailyChange={dailyChange} />
-        <BalancePie data={graphicData} isRefreshing={refreshing} angle={angle} />
+        <BalancePie data={graphicData} angle={angle} />
         {/* <TouchableOpacity style={styles.randomizeContainer} onPress={randomizeChart}>
           <Text style={styles.randomizeText}>Randomize</Text>
         </TouchableOpacity> */}

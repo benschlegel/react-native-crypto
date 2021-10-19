@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text, Image, ImageProps } from 'react-native';
-import { useAnimatedStyle } from 'react-native-reanimated';
 import { currencyFormat, TEXT_COLOR_GRAY, TEXT_COLOR_HIGHLIGHT } from '../Constants/Constants';
 
 interface CoinPreviewProps {
