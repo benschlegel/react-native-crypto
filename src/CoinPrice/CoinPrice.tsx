@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BACKGROUND_COLOR, currencyFormat, TEXT_COLOR, TEXT_COLOR_HIGHLIGHT, TINT_COLOR } from '../Constants/Constants';
 import { wait } from '../Dashboard/Dashboard';
 import { DashboardRoutes, StackNavigationProps } from '../DashboardRoutes';
+import Overview from './Overview';
 
 const MARGIN_OUTER = 24;
 
@@ -59,18 +60,7 @@ const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>
         </View>
 
         {/* Overview */}
-        {/* TODO: refactor to own component */}
-        <View style={styles.overviewCard}>
-          <View style={styles.overviewContainer}>
-            <Text style={styles.fullnameText}>You own</Text>
-
-            <Text style={[styles.courseText, { marginTop: 10 }]}>$236.15</Text>
-            <View style={styles.overviewDetailsContainer}>
-              <Text style={styles.smallHeaderText}>Total return</Text>
-              <Text style={styles.smallHeaderText}>24h return</Text>
-            </View>
-          </View>
-        </View>
+        <Overview />
       </ScrollView>
     </SafeAreaView>
   );
@@ -101,24 +91,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     marginRight: MARGIN_OUTER,
   },
-  overviewCard: {
-    marginHorizontal: MARGIN_OUTER,
-    marginTop: 10,
-    backgroundColor: '#FFF',
-    //Shadows for ios
-    shadowColor: 'rgba(0,0,0, .4)',
-    shadowOffset: { height: 1, width: 1 },
-    shadowOpacity: 1,
-    shadowRadius: 1,
-    //Shadows for android
-    elevation: 0.45,
-    borderRadius: 20,
-    height: 200,
-  },
-  overviewContainer: {
-    marginHorizontal: MARGIN_OUTER,
-    marginVertical: MARGIN_OUTER / 2,
-  },
   icon: {
     width: 70,
     height: 70,
@@ -141,15 +113,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     opacity: 0.95,
     marginBottom: 4,
-  },
-  smallHeaderText: {
-    textAlign: 'left',
-    fontFamily: 'SF-Pro-Text-Regular',
-    fontSize: 14,
-    opacity: 0.9,
-  },
-  overviewDetailsContainer: {
-    marginTop: 10,
   },
 });
 
