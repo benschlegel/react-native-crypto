@@ -40,6 +40,10 @@ const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>
     };
   }, [refreshing]);
 
+  const changeText = `${changePercentage >= 0 ? '+' : ''}${(course * (changePercentage / 100)).toFixed(2)}$ / ${changePercentage.toFixed(
+    2,
+  )}% (1D)`;
+
   return (
     <SafeAreaView style={[styles.container, { paddingTop: insets.top }]}>
       <ScrollView
@@ -59,10 +63,7 @@ const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>
             <Text style={styles.fullnameText}>{fullname}</Text>
             <Animated.View style={animatedOpacity}>
               <Text style={styles.courseText}>{currencyFormat(course)}</Text>
-              <Text style={[{ color }, styles.changeText]}>{`${changePercentage >= 0 ? '+' : ''}${(
-                course *
-                (changePercentage / 100)
-              ).toFixed(2)}$ / ${changePercentage.toFixed(2)}% (1D)`}</Text>
+              <Text style={[{ color }, styles.changeText]}>{changeText}</Text>
             </Animated.View>
           </View>
           <View style={styles.imageContainer}>

@@ -22,16 +22,12 @@ const BalanceText = ({ balance, isRefreshing, dailyChange }: BalanceTextProps): 
     return `${balance.value.toFixed(2) + ' $'}`;
   }, [balance.value]);
 
-  const dailyChangeColor = useAnimatedStyle(() => {
-    return {
-      color: dailyChange >= 0 ? 'green' : 'red',
-    };
-  }, [dailyChange]);
+  const dailyChangeColor = dailyChange >= 0 ? 'green' : 'red';
 
   return (
     <Animated.View style={textStyle}>
       <ReText style={styles.balanceText} text={animatedBalance} />
-      <Animated.Text style={[styles.dailyChange, dailyChangeColor]}>{`${dailyChange.toFixed(2)}% (1D)`}</Animated.Text>
+      <Animated.Text style={[styles.dailyChange, { color: dailyChangeColor }]}>{`${dailyChange.toFixed(2)}% (1D)`}</Animated.Text>
     </Animated.View>
   );
 };
