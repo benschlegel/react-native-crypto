@@ -46,7 +46,9 @@ const BalancePie = ({ data, angle, isRefreshing }: BalancePieProps): React.React
           data: {
             borderRadius: 50,
           },
+          labels: { fontSize: 13, padding: 20, fontFamily: 'SF-Pro-Text-Regular' },
         }}
+        padding={{ left: 50, right: 50 }}
         animate={{
           easing: 'expOut',
           duration: 1100,

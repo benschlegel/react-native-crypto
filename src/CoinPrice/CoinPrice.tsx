@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, ScrollView, RefreshControl, Image } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { VictoryChart, VictoryLine } from 'victory-native';
@@ -11,14 +10,14 @@ import InteractionButtons from './InteractionButtons';
 import Overview from './Overview';
 
 const SAMPLE_DATA = [
-  { x: new Date(1982, 1, 1), y: 125 },
-  { x: new Date(1987, 1, 1), y: 257 },
-  { x: new Date(1993, 1, 1), y: 345 },
-  { x: new Date(1997, 1, 1), y: 515 },
-  { x: new Date(2001, 1, 1), y: 132 },
-  { x: new Date(2005, 1, 1), y: 305 },
-  { x: new Date(2011, 1, 1), y: 270 },
-  { x: new Date(2015, 1, 1), y: 470 },
+  { x: 11, y: 125 },
+  { x: '11:30', y: 257 },
+  { x: '12:00', y: 345 },
+  { x: 12, y: 515 },
+  { x: '13:00', y: 132 },
+  { x: '13:30', y: 305 },
+  { x: '14:00', y: 270 },
+  { x: '14:30', y: 470 },
 ];
 
 const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>): React.ReactElement => {
