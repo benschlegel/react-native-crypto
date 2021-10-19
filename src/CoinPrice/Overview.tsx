@@ -12,7 +12,7 @@ const Overview = ({ abbreviation }: OverviewProps): React.ReactElement => {
   return (
     <View style={styles.overviewCard}>
       <View style={styles.overviewContainer}>
-        <Text style={styles.headerText}>You own</Text>
+        <Text style={styles.headerText}>Overview</Text>
 
         <Text style={styles.courseText}>$236.15</Text>
         <Text style={styles.coinText}>{`${abbreviation} 0.003871`}</Text>
@@ -20,9 +20,17 @@ const Overview = ({ abbreviation }: OverviewProps): React.ReactElement => {
           <View style={styles.returnContainer}>
             <Text style={styles.smallHeaderText}>Total return</Text>
             <Text style={styles.pricesText}>+$24.30</Text>
-            <View style={{ marginTop: 14 }}>
+            <View style={styles.marginTop}>
               <Text style={styles.smallHeaderText}>24h return</Text>
               <Text style={styles.pricesText}>+$3.24</Text>
+            </View>
+          </View>
+          <View>
+            <Text style={styles.smallHeaderText}>Total invested</Text>
+            <Text style={[styles.pricesText, { color: TEXT_COLOR }]}>$210,85</Text>
+            <View style={styles.marginTop}>
+              <Text style={styles.smallHeaderText}>Avg. buy price</Text>
+              <Text style={[styles.pricesText, { color: TEXT_COLOR }]}>$47,121.53</Text>
             </View>
           </View>
         </View>
@@ -44,7 +52,7 @@ const styles = StyleSheet.create({
     //Shadows for android
     elevation: 0.45,
     borderRadius: 20,
-    // height: 200,
+    marginBottom: 14,
   },
   overviewContainer: {
     marginHorizontal: MARGIN_OUTER,
@@ -54,7 +62,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontFamily: 'SF-Pro-Text-Semibold',
     color: TEXT_COLOR,
-    fontSize: 16,
+    fontSize: 18,
     opacity: 0.9,
     marginBottom: 2,
   },
@@ -80,13 +88,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   returnContainer: {
-    marginRight: 60,
+    marginRight: 76,
   },
   pricesText: {
     fontFamily: 'SF-Pro-Text-Semibold',
     fontSize: 18,
     color: 'green',
     opacity: 0.9,
+  },
+  marginTop: {
+    marginTop: 14,
   },
 });
 
