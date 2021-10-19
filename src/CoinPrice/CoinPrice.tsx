@@ -2,12 +2,21 @@ import React, { useCallback, useState } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, ScrollView, RefreshControl, Image } from 'react-native';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { VictoryChart, VictoryLine } from 'victory-native';
 import { BACKGROUND_COLOR, currencyFormat, TEXT_COLOR, TEXT_COLOR_HIGHLIGHT, TINT_COLOR } from '../Constants/Constants';
 import { wait } from '../Dashboard/Dashboard';
 import { DashboardRoutes, StackNavigationProps } from '../DashboardRoutes';
 import Overview from './Overview';
 
 const MARGIN_OUTER = 24;
+
+const SAMPLE_DATA = [
+  { x: 0, y: 2 },
+  { x: 45, y: 3 },
+  { x: 90, y: 5 },
+  { x: 135, y: 4 },
+  { x: 180, y: 7 },
+];
 
 const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>): React.ReactElement => {
   const { image, abbreviation, course, changePercentage, fullname } = route.params?.coin;
@@ -58,6 +67,11 @@ const CoinPrice = ({ route }: StackNavigationProps<DashboardRoutes, 'CoinPrice'>
             <Image style={styles.icon} source={image} />
           </View>
         </View>
+
+        {/* Chart */}
+        <VictoryChart minDomain={{ y: 0 }}>
+          <VictoryLine data={SAMPLE_DATA} />
+        </VictoryChart>
 
         {/* Overview */}
         <Overview abbreviation={abbreviation} />
